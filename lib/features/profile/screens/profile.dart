@@ -1,0 +1,83 @@
+import 'package:flutter/material.dart';
+import 'package:real_state_app/common/widgets/appbar.dart';
+import 'package:real_state_app/features/profile/models/profile_menu.dart';
+import 'package:real_state_app/features/profile/screens/widgets/custom_list_tile.dart';
+import 'package:real_state_app/features/profile/screens/widgets/profile_image_with_username.dart';
+import 'package:real_state_app/utilis/constants/colors.dart';
+import 'package:real_state_app/utilis/constants/images.dart';
+import 'package:real_state_app/utilis/constants/sizes.dart';
+import 'package:real_state_app/utilis/constants/texts.dart';
+
+class MProfileScreen extends StatelessWidget {
+  MProfileScreen({super.key});
+
+  final List<MProfileMenu> upperListMenus = [
+    MProfileMenu(icon: MImage.calendar, title: MText.myBooking),
+    MProfileMenu(icon: MImage.wallet, title: MText.payments),
+  ];
+  final List<MProfileMenu> lowerListMenus = [
+    MProfileMenu(icon: MImage.person, title: MText.profile),
+    MProfileMenu(icon: MImage.bell, title: MText.notification),
+    MProfileMenu(icon: MImage.shield, title: MText.security),
+    MProfileMenu(icon: MImage.language, title: MText.language),
+    MProfileMenu(icon: MImage.info, title: MText.helpCenter),
+    MProfileMenu(icon: MImage.people, title: MText.inviteFriends),
+    MProfileMenu(icon: MImage.logout, title: MText.logout),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: const MAppBar(title: MText.profile),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(MSize.defaultSpace),
+          child: Column(
+            children: [
+              const MAvatarHeading(),
+              const SizedBox(
+                height: MSize.spaceBtwSections,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    border: Border(
+                  top: BorderSide(
+                    color: MColor.lightBlue.withValues(alpha: 0.1),
+                  ),
+                  bottom: BorderSide(
+                    color: MColor.lightBlue.withValues(alpha: 0.1),
+                  ),
+                )),
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: upperListMenus.length,
+                    itemBuilder: (_, index) {
+                      return MCustomListTile(
+                        icon: upperListMenus[index].icon,
+                        title: upperListMenus[index].title,
+                      );
+                    }),
+              ),
+
+              // LOWER LIST MENUS
+              ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: lowerListMenus.length,
+                  itemBuilder: (_, index) {
+                    return MCustomListTile(
+                      icon: lowerListMenus[index].icon,
+                      title: lowerListMenus[index].title,
+                      color: index == lowerListMenus.length - 1
+                          ? Colors.red
+                          : MColor.black,
+                      showTrailing:
+                          index == lowerListMenus.length - 1 ? false : true,
+                    );
+                  }),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
