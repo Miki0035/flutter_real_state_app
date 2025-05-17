@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_state_app/common/widgets/appbar.dart';
+import 'package:real_state_app/common/widgets/icons/bell_icon.dart';
 import 'package:real_state_app/features/profile/models/profile_menu.dart';
 import 'package:real_state_app/features/profile/screens/widgets/custom_list_tile.dart';
 import 'package:real_state_app/features/profile/screens/widgets/profile_image_with_username.dart';
@@ -28,7 +29,14 @@ class MProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MAppBar(title: MText.profile),
+      appBar: const MAppBar(
+        title: Text(
+          MText.profile,
+          style: TextStyle(
+              fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg * 1.3),
+        ),
+        actions: [MBellIcon()],
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(MSize.defaultSpace),
@@ -38,42 +46,55 @@ class MProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: MSize.spaceBtwSections,
               ),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border(
-                  top: BorderSide(
-                    color: MColor.lightBlue.withValues(alpha: 0.1),
-                  ),
-                  bottom: BorderSide(
-                    color: MColor.lightBlue.withValues(alpha: 0.1),
-                  ),
-                )),
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: upperListMenus.length,
-                    itemBuilder: (_, index) {
-                      return MCustomListTile(
-                        icon: upperListMenus[index].icon,
-                        title: upperListMenus[index].title,
-                      );
-                    }),
+
+              Divider(
+                color: MColor.lightBlue.withValues(alpha: 0.1),
+                height: 1.0,
+              ),
+
+              ...upperListMenus.map((menu) =>
+                  MCustomListTile(icon: menu.icon, title: menu.title)),
+
+              // ListView.builder(
+              //     shrinkWrap: true,
+              //     itemCount: upperListMenus.length,
+              //     itemBuilder: (_, index) {
+              //       return MCustomListTile(
+              //         icon: upperListMenus[index].icon,
+              //         title: upperListMenus[index].title,
+              //       );
+              //     }),
+
+              Divider(
+                color: MColor.lightBlue.withValues(alpha: 0.1),
+                height: 1.0,
               ),
 
               // LOWER LIST MENUS
-              ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: lowerListMenus.length,
-                  itemBuilder: (_, index) {
-                    return MCustomListTile(
-                      icon: lowerListMenus[index].icon,
-                      title: lowerListMenus[index].title,
-                      color: index == lowerListMenus.length - 1
-                          ? Colors.red
-                          : MColor.black,
-                      showTrailing:
-                          index == lowerListMenus.length - 1 ? false : true,
-                    );
-                  }),
+              ...lowerListMenus.indexed.map((menu) => MCustomListTile(
+                    icon: menu.$2.icon,
+                    title: menu.$2.title,
+                    color: menu.$1 == lowerListMenus.length - 1
+                        ? Colors.red
+                        : MColor.black,
+                    showTrailing:
+                        menu.$1 == lowerListMenus.length - 1 ? false : true,
+                  )),
+
+              // ListView.builder(
+              //     shrinkWrap: true,
+              //     itemCount: lowerListMenus.length,
+              //     itemBuilder: (_, index) {
+              //       return MCustomListTile(
+              //         icon: lowerListMenus[index].icon,
+              //         title: lowerListMenus[index].title,
+              //         color: index == lowerListMenus.length - 1
+              //             ? Colors.red
+              //             : MColor.black,
+              //         showTrailing:
+              //             index == lowerListMenus.length - 1 ? false : true,
+              //       );
+              //     }),
             ],
           ),
         ),

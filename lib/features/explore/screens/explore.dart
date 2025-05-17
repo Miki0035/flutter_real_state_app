@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:real_state_app/common/widgets/appbar.dart';
+import 'package:real_state_app/common/widgets/icons/bell_icon.dart';
+import 'package:real_state_app/common/widgets/search_bar.dart';
+import 'package:real_state_app/utilis/constants/sizes.dart';
+
+import '../../../common/widgets/buttons/back_button.dart';
 
 class MExploreScreen extends StatelessWidget {
   const MExploreScreen({super.key});
@@ -6,8 +12,26 @@ class MExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Explore'),
+      appBar: MAppBar(
+          leading: MBackButton(),
+          title: Text(
+            'Search Your Ideal Home',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: MSize.fontSizeLg * 1.1,
+            ),
+          ),
+          actions: [MBellIcon()]),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(MSize.defaultSpace),
+          child: Column(
+            children: [
+              MSearchBar(),
+            ],
+          ),
+        ),
       ),
     );
   }
