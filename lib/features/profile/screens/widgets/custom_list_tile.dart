@@ -21,21 +21,20 @@ class MCustomListTile extends StatelessWidget {
     return ListTile(
       leading: Image(
         image: AssetImage(icon),
-        width: 30,
-        height: 30,
+        width: 20,
+        height: 20,
       ),
       title: Text(
         title,
         style: TextStyle(
             color: color,
-            fontWeight: FontWeight.w600,
-            fontSize: MSize.fontSizeLg),
+            fontSize: MSize.fontSizeMd),
       ),
       trailing: showTrailing
           ? const Image(
               image: AssetImage(MImage.rightArrow),
-              width: 25,
-              height: 25,
+              width: 20,
+              height: 20,
             )
           : null,
     );

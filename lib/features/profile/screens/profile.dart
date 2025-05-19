@@ -33,7 +33,7 @@ class MProfileScreen extends StatelessWidget {
         title: Text(
           MText.profile,
           style: TextStyle(
-              fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg * 1.3),
+              fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
         ),
         actions: [MBellIcon()],
       ),
@@ -49,7 +49,7 @@ class MProfileScreen extends StatelessWidget {
 
               Divider(
                 color: MColor.lightBlue.withValues(alpha: 0.1),
-                height: 1.0,
+                height: 2.0,
               ),
 
               ...upperListMenus.map((menu) =>

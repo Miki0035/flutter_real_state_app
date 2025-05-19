@@ -49,7 +49,7 @@ class MAvatarHeading extends StatelessWidget {
               'Mikiyas Kebede',
               style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  fontSize: MSize.fontSizeLg * 1.5),
+                  fontSize: MSize.fontSizeLg),
             )
           ],
         ),

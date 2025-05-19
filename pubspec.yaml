@@ -12,6 +12,7 @@ dependencies:
 
   # UTILITY PACKAGES
   flutter_native_splash: ^2.4.5
+  carousel_slider: ^5.0.0
 
   # STATE MANAGEMENT
   provider: ^6.1.2

@@ -30,8 +30,8 @@ class MBottomNavigationMenu extends StatelessWidget {
                   ? MColor.blue
                   : MColor.veryLightBlack,
               image: AssetImage(icon),
-              width: 30,
-              height: 30,
+              width: 20,
+              height: 20,
             ),
           ),
           Text(
