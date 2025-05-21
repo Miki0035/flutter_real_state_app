@@ -13,8 +13,8 @@ class MAppBarIconNotification extends StatelessWidget {
     return Stack(children: [
       Image.asset(
         MImage.bell,
-        width: 30,
-        height: 30,
+        width: 25,
+        height: 25,
       ),
       Positioned(
           right: 3,

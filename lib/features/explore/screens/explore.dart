@@ -20,7 +20,7 @@ class MExploreScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.w600,
-              fontSize: MSize.fontSizeLg * 1.1,
+              fontSize: MSize.fontSizeLg,
             ),
           ),
           actions: [

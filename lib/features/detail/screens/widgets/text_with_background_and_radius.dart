@@ -12,8 +12,7 @@ class MTextBackgroundRadius extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-          vertical: 10.0, horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
       decoration: BoxDecoration(
           border: Border.all(color: MColor.lightBlue.withValues(alpha: 0.1)),
           color: MColor.lightBlue.withValues(alpha: 0.1),
@@ -21,10 +20,8 @@ class MTextBackgroundRadius extends StatelessWidget {
       child: Center(
         child: Text(
           text.toUpperCase(),
-          style: TextStyle(
-              color:MColor.blue,
-              fontSize: 10.0,
-              fontWeight: FontWeight.w600),
+          style: const TextStyle(
+              color: MColor.blue, fontSize: 10.0, fontWeight: FontWeight.w600),
         ),
       ),
     );

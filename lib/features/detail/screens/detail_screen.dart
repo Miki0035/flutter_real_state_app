@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:real_state_app/common/widgets/appbar.dart';
 import 'package:real_state_app/common/widgets/buttons/back_button.dart';
+import 'package:real_state_app/common/widgets/container/stacked_image_with_rating_button.dart';
+import 'package:real_state_app/common/widgets/texts/headline_text.dart';
 import 'package:real_state_app/common/widgets/icons/appbar_icon.dart';
+import 'package:real_state_app/common/widgets/texts/trailing_text.dart';
 import 'package:real_state_app/features/detail/model/facility_model.dart';
 import 'package:real_state_app/features/detail/screens/widgets/apartment_agent_widget.dart';
 import 'package:real_state_app/features/detail/screens/widgets/apartment_description.dart';
 import 'package:real_state_app/features/detail/screens/widgets/detail_grid_view_item.dart';
 import 'package:real_state_app/features/detail/screens/widgets/detail_heading.dart';
+import 'package:real_state_app/features/detail/screens/widgets/rating_review_container.dart';
+import 'package:real_state_app/features/detail/screens/widgets/review_heart_days_before_row.dart';
 import 'package:real_state_app/utilis/constants/colors.dart';
 import 'package:real_state_app/utilis/constants/images.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
+
+import 'widgets/booking_bottom_navigation_container.dart';
 
 class MDetailScreen extends StatelessWidget {
   MDetailScreen({super.key});
@@ -23,6 +30,12 @@ class MDetailScreen extends StatelessWidget {
     const FacilityModel(image: MImage.dog, text: "Pet Center"),
     const FacilityModel(image: MImage.run, text: "Sport Center"),
     const FacilityModel(image: MImage.laundry, text: "Laundry"),
+  ];
+
+  final List<String> galleries = [
+    MImage.apartmentOne,
+    MImage.livingRoomOne,
+    MImage.livingRoomTwo,
   ];
 
   @override
@@ -63,7 +76,7 @@ class MDetailScreen extends StatelessWidget {
               padding: const EdgeInsets.all(14.0),
               child: Column(
                 children: [
-                  const MApartementDescription(),
+                  const MApartmentDescription(),
                   const SizedBox(
                     height: MSize.defaultSpace,
                   ),
@@ -136,7 +149,7 @@ class MDetailScreen extends StatelessWidget {
 
                       // GRID ICONS
                       GridView.builder(
-                        padding: EdgeInsets.only( top: 24.0),
+                          padding: const EdgeInsets.only(top: 24.0),
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: facilities.length,
@@ -148,8 +161,103 @@ class MDetailScreen extends StatelessWidget {
                               icon: facilities[index].image,
                               label: facilities[index].text)),
 
-                      MDetailHeading(text: "Gallery"),
+                      const MDetailHeading(text: "Gallery"),
 
+                      const SizedBox(
+                        height: MSize.defaultSpace,
+                      ),
+
+                      // GALLERY LIST ITEMS
+                      SizedBox(
+                        height: 120,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: galleries.length,
+                          itemBuilder: (_, index) => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: MStackImageWithRatingIconButton(
+                              width: 120,
+                              image: galleries[index],
+                              showOverlay: index == galleries.length - 1,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: MSize.spaceBtwItems,
+                      ),
+
+                      // LOCATION SECTION
+                      const MDetailHeading(text: "Location"),
+                      const SizedBox(
+                        height: MSize.spaceBtwItems,
+                      ),
+
+                      Row(
+                        children: [
+                          Image.asset(
+                            MImage.location,
+                            color: MColor.blue,
+                            width: 25,
+                            height: 25,
+                          ),
+                          const SizedBox(
+                            width: 8.0,
+                          ),
+                          const Text(
+                            "Grand City St.100, New York, United States",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                color: MColor.veryLightBlack,
+                                fontSize: MSize.fontSizeMd),
+                          )
+                        ],
+                      ),
+
+                      // MAP
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 24.0, horizontal: 14.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Image.asset(
+                          MImage.map,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+
+                      //RATING + REVIEWS
+                      const MHeadline(
+                        leading: MRatingReviewContainer(
+                          rating: 4.8,
+                          reviews: 1275,
+                          fontSize: MSize.fontSizeLg * 1.2,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        trailing: MTrailingText(text: "See All"),
+                      ),
+
+                      const SizedBox(
+                        height: MSize.defaultSpace,
+                      ),
+
+                      //REVIEW SECTION
+
+                      const MApartmentAgentContainer(
+                          size: 44,
+                          agentName: "Charolette Hanlin",
+                          agentImage: MImage.avatar),
+
+                      const Text(
+                          "The apartment is very clean and modern. I really like the interior design. Looks like I'll feel at home 😍."),
+                      const MReviewHeartDaysBeforeRowContainer(
+                        rating: 938,
+                        postedDate: "6 days ago",
+                      )
                     ],
                   ),
                 ],
@@ -157,6 +265,9 @@ class MDetailScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: const SafeArea(
+        child: MBookingBottomNavContainer(),
       ),
     );
   }

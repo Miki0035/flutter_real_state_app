@@ -20,7 +20,7 @@ class MDetailVerticalIconText extends StatelessWidget {
         Container(
           width: 40,
           height: 40,
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: MColor.lightBlue.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(100.0),
@@ -30,13 +30,13 @@ class MDetailVerticalIconText extends StatelessWidget {
             color: MColor.blue,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8.0,
         ),
         Text(
           label,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(fontSize: MSize.fontSizeSm),
+          style: const TextStyle(fontSize: MSize.fontSizeSm),
         ),
       ],
     );

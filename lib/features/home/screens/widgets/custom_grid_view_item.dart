@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:real_state_app/common/widgets/container/stacked_image_with_rating_button.dart';
 import 'package:real_state_app/features/detail/screens/detail_screen.dart';
 import 'package:real_state_app/utilis/constants/colors.dart';
 import 'package:real_state_app/utilis/constants/images.dart';
@@ -34,46 +35,7 @@ class MHomeGridItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: double.infinity,
-              height: 200,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12.0),
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.asset(
-                        image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    // RATING
-                    Positioned(
-                      right: 5,
-                      top: 2,
-                      child: TextButton.icon(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          iconSize: MSize.iconSm,
-                          iconColor: Colors.orangeAccent,
-                          side: const BorderSide(
-                              width: 1.0, color: Colors.transparent),
-                        ),
-                        onPressed: () {},
-                        label: Text(
-                          "$rating",
-                          style: const TextStyle(
-                            color: MColor.blue,
-                          ),
-                        ),
-                        iconAlignment: IconAlignment.start,
-                        icon: const Icon(Icons.star),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            MStackImageWithRatingIconButton(image: image, rating: rating),
             const SizedBox(
               height: 8.0,
             ),

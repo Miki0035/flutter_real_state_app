@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:real_state_app/utilis/constants/colors.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
 
-class MDetailHeading extends StatelessWidget {
-  const MDetailHeading({
+class MTrailingText extends StatelessWidget {
+  const MTrailingText({
     super.key,
     required this.text,
   });
@@ -13,7 +14,10 @@ class MDetailHeading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
+      style: const TextStyle(
+          fontSize: MSize.fontSizeMd,
+          color: MColor.blue,
+          fontWeight: FontWeight.w600),
     );
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:real_state_app/common/widgets/appbar.dart';
-import 'package:real_state_app/common/widgets/headline_text.dart';
+import 'package:real_state_app/common/widgets/texts/headline_text.dart';
 import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
 import 'package:real_state_app/common/widgets/search_bar.dart';
+import 'package:real_state_app/common/widgets/texts/leading_text.dart';
+import 'package:real_state_app/common/widgets/texts/trailing_text.dart';
 import 'package:real_state_app/features/home/models/apartment_model.dart';
 import 'package:real_state_app/features/home/screens/widgets/carousel_item_widget.dart';
 import 'package:real_state_app/features/home/screens/widgets/custom_grid_view_item.dart';
@@ -100,8 +102,8 @@ class MHomeScreen extends StatelessWidget {
 
               // HEADLINE TEXT
               const MHeadline(
-                leadingText: "Featured",
-                trailingText: "See All",
+                leading: MLeadingText(text: "Featured"),
+                trailing: MTrailingText(text: "See All"),
               ),
               const SizedBox(
                 height: MSize.defaultSpace,
@@ -129,8 +131,8 @@ class MHomeScreen extends StatelessWidget {
               ),
 
               const MHeadline(
-                leadingText: "Our Recommendation",
-                trailingText: "See All",
+                leading: MLeadingText(text: "Our Recommendation"),
+                trailing: MTrailingText(text: "See All"),
               ),
 
               const SizedBox(

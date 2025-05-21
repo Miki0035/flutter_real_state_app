@@ -15,6 +15,14 @@ class MImage {
   static const String splash = "assets/images/splash.png";
   static const String whiteGradient = "assets/images/white-gradient.png";
   static const String apartmentOne = "assets/images/apartment_1.jpg";
+  static const String apartmentTwo = "assets/images/apartment_2.png";
+  static const String barOne = "assets/images/bar_1.png";
+  static const String bedOne = "assets/images/bed_1.png";
+  static const String kitchenOne = "assets/images/kitchen_1.png";
+  static const String kitchenTwo = "assets/images/kitchen_2.png";
+  static const String livingRoomOne = "assets/images/living_room_1.png";
+  static const String livingRoomTwo = "assets/images/living_room_2.jpg";
+
 
   // ICONS
   static const String area = "assets/icons/area.png";
