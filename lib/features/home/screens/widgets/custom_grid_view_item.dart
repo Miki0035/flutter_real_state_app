@@ -19,7 +19,7 @@ class MHomeGridItem extends StatelessWidget {
   final double rating;
   final String apartmentName;
   final String location;
-  final double price;
+  final int price;
 
   @override
   Widget build(BuildContext context) {

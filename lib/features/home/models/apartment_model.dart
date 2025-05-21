@@ -3,7 +3,7 @@ class ApartmentModel {
   final String apartmentName;
   final String location;
   final double rating;
-  final double price;
+  final int price;
 
   ApartmentModel(
       {required this.image,

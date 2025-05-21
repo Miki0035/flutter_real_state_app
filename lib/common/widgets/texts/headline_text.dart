@@ -15,7 +15,8 @@ class MHeadline extends StatelessWidget {
         Flexible(
           child: leading
         ),
-        trailing!
+
+        if(trailing != null) trailing!
 
       ],
     );

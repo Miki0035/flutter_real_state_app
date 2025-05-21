@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/common/widgets/appbar.dart';
+import 'package:real_state_app/common/widgets/app_bars/sliver_appbar.dart';
 import 'package:real_state_app/common/widgets/texts/headline_text.dart';
 import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
 import 'package:real_state_app/common/widgets/search_bar.dart';
@@ -50,133 +50,180 @@ class MHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MColor.veryLightBlack.withValues(alpha: 0.1),
-      appBar: MAppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Image.asset(
-                MImage.avatar,
-                width: 55,
-                height: 55,
-                fit: BoxFit.fill,
-              ),
-              const SizedBox(
-                width: 150,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Good Morning",
-                      style: TextStyle(
-                          color: MColor.veryLightBlack,
-                          fontSize: MSize.fontSizeSm,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      "Mikiyas Kebede",
-                      style: TextStyle(
-                          color: MColor.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: MSize.fontSizeMd),
-                    ),
-                  ],
+      // appBar: MAppBar(
+      //     title: Row(
+      //       mainAxisAlignment: MainAxisAlignment.start,
+      //       children: [
+      //         Image.asset(
+      //           MImage.avatar,
+      //           width: 55,
+      //           height: 55,
+      //           fit: BoxFit.fill,
+      //         ),
+      //         const SizedBox(
+      //           width: 150,
+      //           child: Column(
+      //             mainAxisAlignment: MainAxisAlignment.start,
+      //             children: [
+      //               Text(
+      //                 "Good Morning",
+      //                 style: TextStyle(
+      //                     color: MColor.veryLightBlack,
+      //                     fontSize: MSize.fontSizeSm,
+      //                     fontWeight: FontWeight.w500),
+      //               ),
+      //               Text(
+      //                 "Mikiyas Kebede",
+      //                 style: TextStyle(
+      //                     color: MColor.black,
+      //                     fontWeight: FontWeight.w500,
+      //                     fontSize: MSize.fontSizeMd),
+      //               ),
+      //             ],
+      //           ),
+      //         )
+      //       ],
+      //     ),
+      //     actions: const [
+      //       MAppBarIconNotification(
+      //         icon: MImage.bell,
+      //       )
+      //     ]),
+      body: CustomScrollView(
+        slivers: [
+          MSliverAppBar(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                  MImage.avatar,
+                  width: 55,
+                  height: 55,
+                  fit: BoxFit.fill,
+                ),
+                const SizedBox(
+                  width: 150,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Good Morning",
+                        style: TextStyle(
+                            color: MColor.veryLightBlack,
+                            fontSize: MSize.fontSizeSm,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        "Mikiyas Kebede",
+                        style: TextStyle(
+                            color: MColor.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: MSize.fontSizeMd),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            actions: const [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                child: MAppBarIconNotification(
+                  icon: MImage.bell,
                 ),
               )
             ],
           ),
-          actions: const [
-            MAppBarIconNotification(
-              icon: MImage.bell,
-            )
-          ]),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(MSize.defaultSpace),
-          child: Column(
-            children: [
-              //SEARCH BAR
-              const MSearchBar(),
-              const SizedBox(
-                height: MSize.defaultSpace,
-              ),
-
-              // HEADLINE TEXT
-              const MHeadline(
-                leading: MLeadingText(text: "Featured"),
-                trailing: MTrailingText(text: "See All"),
-              ),
-              const SizedBox(
-                height: MSize.defaultSpace,
-              ),
-
-              //CAROUSEL SLIDER
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  autoPlay: true,
-                  height: 300,
-                  scrollDirection: Axis.horizontal,
-                ),
-                itemCount: apartments.length,
-                itemBuilder: (_, int itemIndex, int pageViewIndex) =>
-                    MCarouselItem(
-                        image: apartments[itemIndex].image,
-                        apartmentName: apartments[itemIndex].apartmentName,
-                        location: apartments[itemIndex].location,
-                        rating: apartments[itemIndex].rating,
-                        price: apartments[itemIndex].price),
-              ),
-
-              const SizedBox(
-                height: MSize.spaceBtwSections,
-              ),
-
-              const MHeadline(
-                leading: MLeadingText(text: "Our Recommendation"),
-                trailing: MTrailingText(text: "See All"),
-              ),
-
-              const SizedBox(
-                height: MSize.defaultSpace,
-              ),
-
-              // MENUS
-              SizedBox(
-                height: 35,
-                child: ListView.separated(
-                  separatorBuilder: (_, index) => const SizedBox(
-                    width: 20,
+          SliverPadding(
+            padding: const EdgeInsets.all(MSize.defaultSpace),
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  //SEARCH BAR
+                  const MSearchBar(),
+                  const SizedBox(
+                    height: MSize.defaultSpace,
                   ),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: menus.length,
-                  itemBuilder: (_, index) =>
-                      MHomeMenu(menu: menus[index], index: index),
-                ),
-              ),
 
-              const SizedBox(
-                height: MSize.spaceBtwSections,
-              ),
+                  // HEADLINE TEXT
+                  const MHeadline(
+                    leading: MLeadingText(text: "Featured"),
+                    trailing: MTrailingText(text: "See All"),
+                  ),
+                  const SizedBox(
+                    height: MSize.defaultSpace,
+                  ),
 
-              // GRID VIEW
-              GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 4,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  //CAROUSEL SLIDER
+                  CarouselSlider.builder(
+                    options: CarouselOptions(
+                      height: 300,
+                      scrollDirection: Axis.horizontal,
+                    ),
+                    itemCount: apartments.length,
+                    itemBuilder: (_, int itemIndex, __) =>
+                        MCarouselItem(
+                            image: apartments[itemIndex].image,
+                            apartmentName: apartments[itemIndex].apartmentName,
+                            location: apartments[itemIndex].location,
+                            rating: apartments[itemIndex].rating,
+                            price: apartments[itemIndex].price),
+                  ),
+
+                  const SizedBox(
+                    height: MSize.spaceBtwSections,
+                  ),
+
+                  const MHeadline(
+                    leading: MLeadingText(text: "Our Recommendation"),
+                    trailing: MTrailingText(text: "See All"),
+                  ),
+
+                  const SizedBox(
+                    height: MSize.defaultSpace,
+                  ),
+
+                  // FILTER MENUS
+                  SizedBox(
+                    height: 40,
+                    child: ListView.separated(
+                      separatorBuilder: (_, index) => const SizedBox(
+                        width: 20,
+                      ),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: menus.length,
+                      itemBuilder: (_, index) =>
+                          MHomeMenu(menu: menus[index], index: index),
+                    ),
+                  ),
+
+
+
+                  // GRID VIEW
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 4,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 14,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 20,
                       childAspectRatio: 8 / 14,
-                      mainAxisSpacing: 12),
-                  itemBuilder: (_, index) => const MHomeGridItem(
-                        image: MImage.newYork,
-                        apartmentName: "La Grand Maison",
-                        location: "Tokyo, Japan",
-                        price: 12219,
-                        rating: 4.8,
-                      ))
-            ],
+                    ),
+                    itemBuilder: (_, index) => const MHomeGridItem(
+                      image: MImage.newYork,
+                      apartmentName: "La Grand Maison",
+                      location: "Tokyo, Japan",
+                      price: 12219,
+                      rating: 4.8,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

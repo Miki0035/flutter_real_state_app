@@ -6,18 +6,20 @@ class MTrailingText extends StatelessWidget {
   const MTrailingText({
     super.key,
     required this.text,
+    this.color = MColor.blue,
+    this.fontSize = MSize.fontSizeMd,
   });
 
   final String text;
+  final Color color;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-          fontSize: MSize.fontSizeMd,
-          color: MColor.blue,
-          fontWeight: FontWeight.w600),
+      style: TextStyle(
+          fontSize: fontSize, color: color, fontWeight: FontWeight.w600),
     );
   }
 }

@@ -9,7 +9,12 @@ class MStackImageWithRatingIconButton extends StatelessWidget {
     this.rating = 0.0,
     this.height = 200,
     this.width = double.infinity,
-    this.showOverlay = false
+    this.showOverlay = false,
+    this.positionedHeight = 30.0,
+    this.fontWeight = FontWeight.w600,
+    this.fontSize = 12.0,
+    this.top = 5,
+    this.iconSize = 14.0,
   });
 
   final String image;
@@ -17,6 +22,11 @@ class MStackImageWithRatingIconButton extends StatelessWidget {
   final double height;
   final double width;
   final bool showOverlay;
+  final double positionedHeight;
+  final double fontSize;
+  final double top;
+  final FontWeight fontWeight;
+  final double iconSize;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +47,12 @@ class MStackImageWithRatingIconButton extends StatelessWidget {
             if (rating != 0.0)
               Positioned(
                 right: 5,
-                top: 2,
+                top: 8,
+                height: positionedHeight,
                 child: TextButton.icon(
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.white,
-                    iconSize: MSize.iconSm,
+                    iconSize: iconSize,
                     iconColor: Colors.orangeAccent,
                     side:
                         const BorderSide(width: 1.0, color: Colors.transparent),
@@ -49,31 +60,32 @@ class MStackImageWithRatingIconButton extends StatelessWidget {
                   onPressed: () {},
                   label: Text(
                     "$rating",
-                    style: const TextStyle(
-                      color: MColor.blue,
-                    ),
+                    style: TextStyle(
+                        color: MColor.blue,
+                        fontSize: fontSize,
+                        fontWeight: fontWeight),
                   ),
                   iconAlignment: IconAlignment.start,
                   icon: const Icon(Icons.star),
                 ),
               ),
             if (showOverlay)
-            Positioned.fill(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: MColor.lightBlack.withValues(alpha: 0.5),
-                ),
-                child: const Center(
-                  child: Text(
-                    "20+",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: MSize.fontSizeLg),
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: MColor.lightBlack.withValues(alpha: 0.5),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "20+",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: MSize.fontSizeLg),
+                    ),
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),

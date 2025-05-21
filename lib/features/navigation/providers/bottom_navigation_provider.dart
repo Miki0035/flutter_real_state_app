@@ -7,17 +7,17 @@ class DestinationChange with ChangeNotifier {
   int _selectedIndex = 0;
 
   final List<Widget> appScreens = [
-     MHomeScreen(),
-    const MExploreScreen(),
+    MHomeScreen(),
+    MExploreScreen(),
     MProfileScreen(),
   ];
 
   int get currentIndex => _selectedIndex;
+
   Widget get currentScreen => appScreens[_selectedIndex];
 
   void navigateTo(int index) {
     _selectedIndex = index;
     notifyListeners();
   }
-
 }

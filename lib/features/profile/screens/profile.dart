@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/common/widgets/appbar.dart';
+import 'package:real_state_app/common/widgets/app_bars/sliver_appbar.dart';
 import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
 import 'package:real_state_app/features/profile/models/profile_menu.dart';
 import 'package:real_state_app/features/profile/screens/widgets/custom_list_tile.dart';
@@ -29,79 +29,101 @@ class MProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MAppBar(
-        title: Text(
-          MText.profile,
-          style: TextStyle(
-              fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
-        ),
-        actions: [
-          MAppBarIconNotification(
-            icon: MImage.bell,
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(MSize.defaultSpace),
-          child: Column(
-            children: [
-              const MAvatarHeading(),
-              const SizedBox(
-                height: MSize.spaceBtwSections,
+      // appBar: const MAppBar(
+      //   title: Text(
+      //     MText.profile,
+      //     style: TextStyle(
+      //         fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
+      //   ),
+      //   actions: [
+      //     MAppBarIconNotification(
+      //       icon: MImage.bell,
+      //     )
+      //   ],
+      // ),
+      body: CustomScrollView(
+        slivers: [
+          const MSliverAppBar(
+            title: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                MText.profile,
+                style: TextStyle(
+                    fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg * 1.2),
               ),
-
-              Divider(
-                color: MColor.lightBlue.withValues(alpha: 0.1),
-                height: 2.0,
-              ),
-
-              ...upperListMenus.map((menu) =>
-                  MCustomListTile(icon: menu.icon, title: menu.title)),
-
-              // ListView.builder(
-              //     shrinkWrap: true,
-              //     itemCount: upperListMenus.length,
-              //     itemBuilder: (_, index) {
-              //       return MCustomListTile(
-              //         icon: upperListMenus[index].icon,
-              //         title: upperListMenus[index].title,
-              //       );
-              //     }),
-
-              Divider(
-                color: MColor.lightBlue.withValues(alpha: 0.1),
-                height: 1.0,
-              ),
-
-              // LOWER LIST MENUS
-              ...lowerListMenus.indexed.map((menu) => MCustomListTile(
-                    icon: menu.$2.icon,
-                    title: menu.$2.title,
-                    color: menu.$1 == lowerListMenus.length - 1
-                        ? Colors.red
-                        : MColor.black,
-                    showTrailing:
-                        menu.$1 == lowerListMenus.length - 1 ? false : true,
-                  )),
-
-              // ListView.builder(
-              //     shrinkWrap: true,
-              //     itemCount: lowerListMenus.length,
-              //     itemBuilder: (_, index) {
-              //       return MCustomListTile(
-              //         icon: lowerListMenus[index].icon,
-              //         title: lowerListMenus[index].title,
-              //         color: index == lowerListMenus.length - 1
-              //             ? Colors.red
-              //             : MColor.black,
-              //         showTrailing:
-              //             index == lowerListMenus.length - 1 ? false : true,
-              //       );
-              //     }),
+            ),
+            actions: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.0),
+                child: MAppBarIconNotification(
+                  icon: MImage.bell,
+                ),
+              )
             ],
           ),
-        ),
+          SliverPadding(
+            padding: const EdgeInsets.all(MSize.defaultSpace),
+            sliver: SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  const MAvatarHeading(),
+                  const SizedBox(
+                    height: MSize.spaceBtwSections,
+                  ),
+
+                  Divider(
+                    color: MColor.lightBlue.withValues(alpha: 0.1),
+                    height: 2.0,
+                  ),
+
+                  ...upperListMenus.map((menu) =>
+                      MCustomListTile(icon: menu.icon, title: menu.title)),
+
+                  // ListView.builder(
+                  //     shrinkWrap: true,
+                  //     itemCount: upperListMenus.length,
+                  //     itemBuilder: (_, index) {
+                  //       return MCustomListTile(
+                  //         icon: upperListMenus[index].icon,
+                  //         title: upperListMenus[index].title,
+                  //       );
+                  //     }),
+
+                  Divider(
+                    color: MColor.lightBlue.withValues(alpha: 0.1),
+                    height: 1.0,
+                  ),
+
+                  // LOWER LIST MENUS
+                  ...lowerListMenus.indexed.map((menu) => MCustomListTile(
+                        icon: menu.$2.icon,
+                        title: menu.$2.title,
+                        color: menu.$1 == lowerListMenus.length - 1
+                            ? Colors.red
+                            : MColor.black,
+                        showTrailing:
+                            menu.$1 == lowerListMenus.length - 1 ? false : true,
+                      )),
+
+                  // ListView.builder(
+                  //     shrinkWrap: true,
+                  //     itemCount: lowerListMenus.length,
+                  //     itemBuilder: (_, index) {
+                  //       return MCustomListTile(
+                  //         icon: lowerListMenus[index].icon,
+                  //         title: lowerListMenus[index].title,
+                  //         color: index == lowerListMenus.length - 1
+                  //             ? Colors.red
+                  //             : MColor.black,
+                  //         showTrailing:
+                  //             index == lowerListMenus.length - 1 ? false : true,
+                  //       );
+                  //     }),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
