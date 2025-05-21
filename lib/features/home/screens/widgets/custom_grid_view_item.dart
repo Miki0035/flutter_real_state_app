@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:real_state_app/features/detail/screens/detail_screen.dart';
 import 'package:real_state_app/utilis/constants/colors.dart';
 import 'package:real_state_app/utilis/constants/images.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
@@ -21,95 +22,101 @@ class MHomeGridItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(12.0)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: 200,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(12.0),
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: Image.asset(
-                      image,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  // RATING
-                  Positioned(
-                    right: 5,
-                    top: 2,
-                    child: TextButton.icon(
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        iconSize: MSize.iconSm,
-                        iconColor: Colors.orangeAccent,
-                        side: const BorderSide(
-                            width: 1.0, color: Colors.transparent),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MDetailScreen()));
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(12.0)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 200,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12.0),
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: Image.asset(
+                        image,
+                        fit: BoxFit.cover,
                       ),
-                      onPressed: () {},
-                      label: Text(
-                        "$rating",
-                        style: const TextStyle(
-                          color: MColor.blue,
+                    ),
+                    // RATING
+                    Positioned(
+                      right: 5,
+                      top: 2,
+                      child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          iconSize: MSize.iconSm,
+                          iconColor: Colors.orangeAccent,
+                          side: const BorderSide(
+                              width: 1.0, color: Colors.transparent),
                         ),
+                        onPressed: () {},
+                        label: Text(
+                          "$rating",
+                          style: const TextStyle(
+                            color: MColor.blue,
+                          ),
+                        ),
+                        iconAlignment: IconAlignment.start,
+                        icon: const Icon(Icons.star),
                       ),
-                      iconAlignment: IconAlignment.start,
-                      icon: const Icon(Icons.star),
                     ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Text(
+              apartmentName,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: MSize.fontSizeMd,
+              ),
+            ),
+            const SizedBox(
+              height: 4.0,
+            ),
+            Text(
+              location,
+              style: const TextStyle(
+                  fontSize: MSize.fontSizeSm, color: MColor.lightBlack),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //PRICE
+                Text(
+                  '\$$price',
+                  style: const TextStyle(
+                    color: MColor.blue,
+                    fontWeight: FontWeight.w600,
                   ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8.0,
-          ),
-          Text(
-            apartmentName,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: MSize.fontSizeMd,
-            ),
-          ),
-          const SizedBox(
-            height: 4.0,
-          ),
-          Text(
-            location,
-            style: const TextStyle(
-                fontSize: MSize.fontSizeSm, color: MColor.lightBlack),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              //PRICE
-              Text(
-                '\$$price',
-                style: const TextStyle(
-                  color: MColor.blue,
-                  fontWeight: FontWeight.w600,
                 ),
-              ),
-              // HEAR ICON
-              IconButton(
-                onPressed: () {},
-                icon: Image.asset(
-                  MImage.heart,
-                  color: Colors.black,
-                  width: MSize.iconMd,
-                  height: MSize.iconMd,
+                // HEAR ICON
+                IconButton(
+                  onPressed: () {},
+                  icon: Image.asset(
+                    MImage.heart,
+                    color: Colors.black,
+                    width: MSize.iconMd,
+                    height: MSize.iconMd,
+                  ),
                 ),
-              ),
-            ],
-          )
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:real_state_app/common/widgets/container/avatar_circular_image_container.dart';
 import 'package:real_state_app/utilis/constants/images.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
 
@@ -17,17 +17,7 @@ class MAvatarHeading extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(4.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0)),
-                  child: const Image(
-                    image: AssetImage(MImage.avatar),
-                    fit: BoxFit.fill,
-                    width: 120,
-                    height: 120,
-                  ),
-                ),
+                const MAvatarCircular(image: MImage.avatar),
                 Positioned(
                   bottom: 0,
                   right: 0,
@@ -48,8 +38,7 @@ class MAvatarHeading extends StatelessWidget {
             const Text(
               'Mikiyas Kebede',
               style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: MSize.fontSizeLg),
+                  fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
             )
           ],
         ),

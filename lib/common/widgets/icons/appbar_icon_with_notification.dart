@@ -3,11 +3,11 @@ import 'package:real_state_app/utilis/constants/colors.dart';
 
 import '../../../utilis/constants/images.dart';
 
-class MBellIcon extends StatelessWidget {
-  const MBellIcon({
-    super.key,
+class MAppBarIconNotification extends StatelessWidget {
+  const MAppBarIconNotification({
+    super.key, required this.icon,
   });
-
+  final String icon;
   @override
   Widget build(BuildContext context) {
     return Stack(children: [

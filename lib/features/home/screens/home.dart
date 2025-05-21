@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:real_state_app/common/widgets/appbar.dart';
 import 'package:real_state_app/common/widgets/headline_text.dart';
-import 'package:real_state_app/common/widgets/icons/bell_icon.dart';
+import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
 import 'package:real_state_app/common/widgets/search_bar.dart';
 import 'package:real_state_app/features/home/models/apartment_model.dart';
 import 'package:real_state_app/features/home/screens/widgets/carousel_item_widget.dart';
@@ -82,7 +82,11 @@ class MHomeScreen extends StatelessWidget {
               )
             ],
           ),
-          actions: const [MBellIcon()]),
+          actions: const [
+            MAppBarIconNotification(
+              icon: MImage.bell,
+            )
+          ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(MSize.defaultSpace),

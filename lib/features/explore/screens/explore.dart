@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:real_state_app/common/widgets/appbar.dart';
-import 'package:real_state_app/common/widgets/icons/bell_icon.dart';
+import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
 import 'package:real_state_app/common/widgets/search_bar.dart';
+import 'package:real_state_app/utilis/constants/images.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
 
 import '../../../common/widgets/buttons/back_button.dart';
@@ -22,7 +23,11 @@ class MExploreScreen extends StatelessWidget {
               fontSize: MSize.fontSizeLg * 1.1,
             ),
           ),
-          actions: [MBellIcon()]),
+          actions: [
+             MAppBarIconNotification(
+              icon: MImage.bell,
+            )
+          ]),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(MSize.defaultSpace),

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:real_state_app/utilis/devices/device_utility.dart';
 
-
 class MAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MAppBar({
     super.key,
-    required this.title,
+    this.title,
     this.leading,
     this.showBackArrow = false,
     required this.actions,
   });
 
-  final Widget title;
+  final Widget? title;
   final Widget? leading;
   final bool showBackArrow;
   final List<Widget> actions;
@@ -24,7 +23,7 @@ class MAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: leading,
         automaticallyImplyLeading: showBackArrow,
         title: title,
-        actions:actions,
+        actions: actions,
       ),
     );
   }

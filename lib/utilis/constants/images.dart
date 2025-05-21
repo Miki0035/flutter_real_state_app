@@ -14,6 +14,7 @@ class MImage {
   static const String onboarding = "assets/images/onboarding.png";
   static const String splash = "assets/images/splash.png";
   static const String whiteGradient = "assets/images/white-gradient.png";
+  static const String apartmentOne = "assets/images/apartment_1.jpg";
 
   // ICONS
   static const String area = "assets/icons/area.png";
@@ -49,8 +50,4 @@ class MImage {
   static const String swim = "assets/icons/swim.png";
   static const String wallet = "assets/icons/wallet.png";
   static const String wifi = "assets/icons/wifi.png";
-
-
-
-
 }

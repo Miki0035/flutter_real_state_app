@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:real_state_app/common/widgets/appbar.dart';
-import 'package:real_state_app/common/widgets/icons/bell_icon.dart';
+import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
 import 'package:real_state_app/features/profile/models/profile_menu.dart';
 import 'package:real_state_app/features/profile/screens/widgets/custom_list_tile.dart';
 import 'package:real_state_app/features/profile/screens/widgets/profile_image_with_username.dart';
@@ -35,7 +35,11 @@ class MProfileScreen extends StatelessWidget {
           style: TextStyle(
               fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
         ),
-        actions: [MBellIcon()],
+        actions: [
+          MAppBarIconNotification(
+            icon: MImage.bell,
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
