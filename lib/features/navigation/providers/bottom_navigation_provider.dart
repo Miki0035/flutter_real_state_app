@@ -3,11 +3,11 @@ import 'package:real_state_app/features/explore/screens/explore.dart';
 import 'package:real_state_app/features/home/screens/home.dart';
 import 'package:real_state_app/features/profile/screens/profile.dart';
 
-class DestinationChange with ChangeNotifier {
+class NavigationProvider with ChangeNotifier {
   int _selectedIndex = 0;
 
   final List<Widget> appScreens = [
-    MHomeScreen(),
+    const MHomeScreen(),
     MExploreScreen(),
     MProfileScreen(),
   ];

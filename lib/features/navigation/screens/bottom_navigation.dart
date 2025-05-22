@@ -17,7 +17,7 @@ class MBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DestinationChange>(
+    return Consumer<NavigationProvider>(
       builder: (context, value, child) => Scaffold(
         body: value.currentScreen,
         bottomNavigationBar: NavigationBar(

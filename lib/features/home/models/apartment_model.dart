@@ -4,11 +4,22 @@ class ApartmentModel {
   final String location;
   final double rating;
   final int price;
+  final Type type;
 
-  ApartmentModel(
-      {required this.image,
-      required this.apartmentName,
-      required this.location,
-      required this.rating,
-      required this.price});
+  ApartmentModel({
+    required this.image,
+    required this.apartmentName,
+    required this.location,
+    required this.rating,
+    required this.price,
+    required this.type,
+  });
+}
+
+enum Type {
+  house,
+  villa,
+  apartments,
+  all,
+  others,
 }

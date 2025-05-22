@@ -13,6 +13,7 @@ class MBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(4.0),
+      margin: const EdgeInsets.only(left: 8.0),
       decoration: BoxDecoration(
           color: backgroundColor.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(100)),

@@ -7,7 +7,7 @@ class MStackImageWithRatingIconButton extends StatelessWidget {
     super.key,
     required this.image,
     this.rating = 0.0,
-    this.height = 200,
+    this.height = 180,
     this.width = double.infinity,
     this.showOverlay = false,
     this.positionedHeight = 30.0,

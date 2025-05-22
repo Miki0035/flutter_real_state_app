@@ -18,7 +18,7 @@ class MBottomNavigationMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DestinationChange>(
+    return Consumer<NavigationProvider>(
       builder: (_, value, __) => Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

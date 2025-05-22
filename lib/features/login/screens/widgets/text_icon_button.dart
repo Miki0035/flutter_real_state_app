@@ -19,7 +19,7 @@ class MTextIconButton extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         boxShadow: const [
-           BoxShadow(
+          BoxShadow(
             color: Color(0x338a8d90), // Adjust opacity and darkness as needed
             blurRadius: 10,
             spreadRadius: 2,
@@ -31,15 +31,16 @@ class MTextIconButton extends StatelessWidget {
       ),
       child: TextButton.icon(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(
-              builder: (_) =>  MBottomNavigation()));
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (_) => MBottomNavigation()),
+              (Route<dynamic> route) => false);
         },
         label: const Text(
           MText.signUpGoogle,
           style: TextStyle(
               color: MColor.black,
               fontWeight: FontWeight.w600,
-              fontSize: MSize.fontSizeLg ),
+              fontSize: MSize.fontSizeLg),
         ),
         icon: const Image(
           image: AssetImage(MImage.google),
