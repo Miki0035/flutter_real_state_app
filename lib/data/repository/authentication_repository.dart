@@ -1,16 +1,12 @@
-import 'package:appwrite/appwrite.dart';
-import 'package:appwrite/enums.dart';
-import 'package:appwrite/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:real_state_app/utilis/popups/full_screen_loader.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 enum AuthStatus { uninitialized, authenticated, unauthenticated }
 
 class AuthenticationRepository extends ChangeNotifier {
-  final Client _client = Client();
-  late final Account _account;
-
+  final SupabaseClient _client;
   AuthStatus _status = AuthStatus.uninitialized;
 
   User? _currentUser;
@@ -19,89 +15,90 @@ class AuthenticationRepository extends ChangeNotifier {
 
   AuthStatus get status => _status;
 
-  AuthenticationRepository() {
-    _init();
+  AuthenticationRepository()
+      : _client = SupabaseClient(
+            dotenv.env["SUPABASE_URL"]!, dotenv.env["SUPABASE_ANON_KEY"]!) {
     getCurrentUser();
   }
 
-  void _init() async {
-    _client
-      ..setEndpoint(dotenv.env["APP_WRITE_ENDPOINT"] ?? "")
-      ..setProject(dotenv.env["APP_WRITE_PROJECT_ID"] ?? "");
-    _account = Account(_client);
-  }
-
-  // CREATE USER EMAIL AND PASSWORD
-  Future<User> createUser(
+// CREATE USER EMAIL AND PASSWORD
+  Future<User?> createUser(
       {required String email, required String password}) async {
     try {
-      final user = await _account.create(
-          userId: ID.unique(), email: email, password: password, name: email);
-      return user;
+      final user = await _client.auth.signUp(email: email, password: password);
+      _currentUser = user.user;
     } catch (e) {
-      throw e;
+      return null;
     } finally {
       notifyListeners();
     }
+    return null;
   }
 
-  // CREATE EMAIL SESSION
-  Future<Session> createEmailSession(
-      {required String email, required String password}) async {
-    try {
-      final session = await _account.createEmailPasswordSession(
-          email: email, password: password);
-      _currentUser = await _account.get();
-      _status = AuthStatus.authenticated;
-      return session;
-    } catch (e) {
-      throw e;
-    } finally {
-      notifyListeners();
-    }
-  }
+// CREATE EMAIL SESSION
+//   Future<Session?> createEmailSession(
+//       {required String email, required String password}) async {
+//     try {
+//       final session = await _account.createEmailPasswordSession(
+//           email: email, password: password);
+//       _currentUser = await _account.get();
+//       _status = AuthStatus.authenticated;
+//       return session;
+//     } catch (e) {
+//       print("Error in createEmailSession: $e");
+//       return null;
+//     } finally {
+//       notifyListeners();
+//     }
+//   }
 
-  // SIGIN
-
-  //SIGN IN WITH PROVIDER
-  Future<void> signInWithProvider(
-      {required OAuthProvider provider, required BuildContext context}) async {
+//SIGN IN WITH PROVIDER
+  Future<bool> signInWithProvider({required OAuthProvider provider}) async {
     try {
-      MFullScreenLoader.openLoadingDialog(context);
-      await _account.createOAuth2Session(
-          provider: provider, success: "http://localhost:50233/");
-      _currentUser = await _account.get();
-      _status = AuthStatus.authenticated;
-      // Navigator.of(context).pushAndRemoveUntil(
-      //     MaterialPageRoute(builder: (_) => MBottomNavigation()),
-      //     (Route<dynamic> route) => false);
-    } catch (e) {
-      rethrow;
-    } finally {
-      notifyListeners();
-      if (context.mounted) {
-        MFullScreenLoader.stopLoadingDialog(context);
+      final webClientId = dotenv.env["GOOGLE_CLIENT_ID"];
+      final GoogleSignIn googleSignIn = GoogleSignIn(
+        clientId: webClientId,
+      );
+      final googleUser = await googleSignIn.signIn();
+      final googleAuth = await googleUser!.authentication;
+      final accessToken = googleAuth.accessToken;
+      final idToken = googleAuth.idToken;
+
+      if (accessToken == null) {
+        throw 'No Access Token found.';
       }
+
+      if (idToken == null) {
+        throw 'No ID Token found.';
+      }
+
+      await _client.auth.signInWithIdToken(
+        provider: provider,
+        idToken: idToken,
+        accessToken: accessToken,
+      );
+      _status = AuthStatus.authenticated;
+      return true;
+    } catch (e) {
+      return false;
+    } finally {
+      notifyListeners();
     }
   }
 
-  //
-  // // CHECKS FOR REDIRECTS
-  // void listenForAuthRedirects() {
-  //   uriLinkStream.listen((Uri? uri) async {
-  //     if (uri != null && uri.scheme == 'ReState') {
-  //       _user = await getCurrentUser();
-  //       notifyListeners();
-  //     }
-  //   });
-  // }
+// CHECKS FOR REDIRECTS
+// void listenForAuthRedirects() {
+//   supabase
+// }
 
-  // GET LOGGED IN USER
+// GET LOGGED IN USER
   getCurrentUser() async {
     try {
-      final user = await _account.get();
-      _status = AuthStatus.authenticated;
-      _currentUser = user;
+      final user = _client.auth.currentUser;
+      if (user != null) {
+        _status = AuthStatus.authenticated;
+        _currentUser = user;
+      }
     } catch (_) {
       _status = AuthStatus.unauthenticated;
     } finally {
@@ -109,11 +106,14 @@ class AuthenticationRepository extends ChangeNotifier {
     }
   }
 
-  Future<void> logout() async {
+  Future<bool> logout() async {
     try {
-      await _account.deleteSessions();
+      await _client.auth.signOut();
       _currentUser = null;
       _status = AuthStatus.unauthenticated;
+      return true;
+    } catch (e) {
+      return false;
     } finally {
       notifyListeners();
     }

@@ -1,4 +1,3 @@
-import 'package:appwrite/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:real_state_app/data/repository/authentication_repository.dart';
@@ -6,6 +5,8 @@ import 'package:real_state_app/utilis/constants/colors.dart';
 import 'package:real_state_app/utilis/constants/images.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
 import 'package:real_state_app/utilis/constants/texts.dart';
+import 'package:real_state_app/utilis/popups/full_screen_loader.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MTextIconButton extends StatelessWidget {
   const MTextIconButton({
@@ -14,7 +15,6 @@ class MTextIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthenticationRepository>(context);
     return Container(
       width: 420,
       padding: const EdgeInsets.symmetric(
@@ -33,8 +33,29 @@ class MTextIconButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(50.0),
       ),
       child: TextButton.icon(
-        onPressed: () => auth.signInWithProvider(
-            provider: OAuthProvider.google, context: context),
+        onPressed: () async {
+          MScreenNotifier.openLoadingDialog(context);
+          try {
+            final response = await Provider.of<AuthenticationRepository>(
+                    context,
+                    listen: false)
+                .signInWithProvider(provider: OAuthProvider.google);
+            if (response && context.mounted) {
+              MScreenNotifier.showSnackBar(context, "Logged in successfully",
+                  backgroundColor: Colors.green);
+            }
+          } catch (e) {
+            if (context.mounted) {
+              MScreenNotifier.showSnackBar(context,
+                  "Problem occured while signing you in, please try again",
+                  backgroundColor: Colors.redAccent);
+            }
+          } finally {
+            if (context.mounted) {
+              MScreenNotifier.stopLoadingDialog(context);
+            }
+          }
+        },
         label: const Text(
           MText.signUpGoogle,
           style: TextStyle(
