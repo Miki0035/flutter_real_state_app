@@ -172,7 +172,7 @@ class MHomeScreen extends StatelessWidget {
                               crossAxisCount: 2,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 20,
-                              childAspectRatio: 8 / 14,
+                              childAspectRatio: 8 / 14.2,
                             ),
                             itemBuilder: (_, index) => MHomeGridItem(
                               image: providerA.filteredApartments[index].image,

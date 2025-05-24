@@ -1,5 +1,7 @@
+import 'package:appwrite/enums.dart';
 import 'package:flutter/material.dart';
-import 'package:real_state_app/features/navigation/screens/bottom_navigation.dart';
+import 'package:provider/provider.dart';
+import 'package:real_state_app/data/repository/authentication_repository.dart';
 import 'package:real_state_app/utilis/constants/colors.dart';
 import 'package:real_state_app/utilis/constants/images.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
@@ -12,6 +14,7 @@ class MTextIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<AuthenticationRepository>(context);
     return Container(
       width: 420,
       padding: const EdgeInsets.symmetric(
@@ -30,17 +33,14 @@ class MTextIconButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(50.0),
       ),
       child: TextButton.icon(
-        onPressed: () {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (_) => MBottomNavigation()),
-              (Route<dynamic> route) => false);
-        },
+        onPressed: () => auth.signInWithProvider(
+            provider: OAuthProvider.google, context: context),
         label: const Text(
           MText.signUpGoogle,
           style: TextStyle(
               color: MColor.black,
               fontWeight: FontWeight.w600,
-              fontSize: MSize.fontSizeLg),
+              fontSize: MSize.fontSizeMd),
         ),
         icon: const Image(
           image: AssetImage(MImage.google),

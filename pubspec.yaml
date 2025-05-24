@@ -17,10 +17,19 @@ dependencies:
   # STATE MANAGEMENT
   provider: ^6.1.2
 
+  # AUTHENTICATION
+  appwrite: ^16.0.0
+  flutter_dotenv: ^5.2.1
+  google_sign_in: ^6.1.4
+#  uni_links: ^0.5.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+
+dependency_overrides:
+  flutter_web_auth_2: ^4.1.0
 
 flutter:
   uses-material-design: true
@@ -29,6 +38,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - .env
 
   # LOCAL FONTS
   fonts:

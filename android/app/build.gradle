@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace = "com.example.real_state_app"
+    namespace = "com.mikiyas.restate"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
