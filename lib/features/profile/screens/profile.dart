@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:real_state_app/common/widgets/app_bars/sliver_appbar.dart';
 import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
 import 'package:real_state_app/features/profile/models/profile_menu.dart';
@@ -8,6 +9,9 @@ import 'package:real_state_app/utilis/constants/colors.dart';
 import 'package:real_state_app/utilis/constants/images.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
 import 'package:real_state_app/utilis/constants/texts.dart';
+import 'package:real_state_app/utilis/popups/full_screen_loader.dart';
+
+import '../../../data/repository/authentication_repository.dart';
 
 class MProfileScreen extends StatelessWidget {
   MProfileScreen({super.key});
@@ -49,7 +53,8 @@ class MProfileScreen extends StatelessWidget {
               child: Text(
                 MText.profile,
                 style: TextStyle(
-                    fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg * 1.2),
+                    fontWeight: FontWeight.w600,
+                    fontSize: MSize.fontSizeLg * 1.2),
               ),
             ),
             actions: [
@@ -98,6 +103,27 @@ class MProfileScreen extends StatelessWidget {
                   ...lowerListMenus.indexed.map((menu) => MCustomListTile(
                         icon: menu.$2.icon,
                         title: menu.$2.title,
+                        onTap: menu.$1 == lowerListMenus.length - 1
+                            ? () async {
+                                try {
+                                  final result = await Provider.of<
+                                              AuthenticationRepository>(context,
+                                          listen: false)
+                                      .logout();
+                                  if (result && context.mounted) {
+                                    MScreenNotifier.showSnackBar(context,
+                                        "You have successfully logged out",
+                                        backgroundColor: Colors.green);
+                                  }
+                                } catch (e) {
+                                  if (context.mounted) {
+                                    MScreenNotifier.showSnackBar(context,
+                                        "Problem occurred while logging you out, please try again",
+                                        backgroundColor: Colors.redAccent);
+                                  }
+                                }
+                              }
+                            : () {},
                         color: menu.$1 == lowerListMenus.length - 1
                             ? Colors.red
                             : MColor.black,

@@ -14,7 +14,7 @@ void main() async {
   await dotenv.load(fileName: ".env");
 
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => AuthenticationRepository()..getCurrentUser()),
+    ChangeNotifierProvider(create: (_) => AuthenticationRepository()),
     ChangeNotifierProvider(create: (_) => NavigationProvider()),
     ChangeNotifierProvider(create: (_) => HomeSearchBarProvider()),
     ChangeNotifierProvider(create: (_) => HomeFilterTabProvider()),
