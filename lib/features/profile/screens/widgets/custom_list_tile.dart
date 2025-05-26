@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/utilis/constants/colors.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
-import 'package:real_state_app/utilis/constants/sizes.dart';
+import 'package:flutter_restate_app/utilis/constants/colors.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 
 class MCustomListTile extends StatelessWidget {
   const MCustomListTile(

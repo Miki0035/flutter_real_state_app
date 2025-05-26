@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_state_app/utilis/classes/abstract_home_explore_search_provider_class.dart';
-import 'package:real_state_app/utilis/constants/colors.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
-import 'package:real_state_app/utilis/constants/sizes.dart';
+import 'package:flutter_restate_app/utilis/classes/abstract_home_explore_search_provider_class.dart';
+import 'package:flutter_restate_app/utilis/constants/colors.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 
 class MSearchBar<T extends BaseSearchBarProvider> extends StatelessWidget {
   const MSearchBar({

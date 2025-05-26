@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/common/widgets/container/avatar_circular_image_container.dart';
-import 'package:real_state_app/utilis/constants/sizes.dart';
+import 'package:flutter_restate_app/common/widgets/container/avatar_circular_image_container.dart';
+import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 
 class MApartmentAgentContainer extends StatelessWidget {
   const MApartmentAgentContainer({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/features/explore/screens/explore.dart';
-import 'package:real_state_app/features/home/screens/home.dart';
-import 'package:real_state_app/features/profile/screens/profile.dart';
+import 'package:flutter_restate_app/features/explore/screens/explore.dart';
+import 'package:flutter_restate_app/features/home/screens/home.dart';
+import 'package:flutter_restate_app/features/profile/screens/profile.dart';
 
 class NavigationProvider with ChangeNotifier {
   int _selectedIndex = 0;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/utilis/devices/device_utility.dart';
+import 'package:flutter_restate_app/utilis/devices/device_utility.dart';
 
 class MAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MAppBar({

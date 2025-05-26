@@ -1,5 +1,5 @@
-import 'package:real_state_app/features/home/models/apartment_model.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/features/home/models/apartment_model.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
 
 final List<ApartmentModel> dummyApartments = [
   ApartmentModel(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/utilis/themes/custom_theme/appbar_theme.dart';
+import 'package:flutter_restate_app/utilis/themes/custom_theme/appbar_theme.dart';
 
 class MAppTheme {
   MAppTheme._();

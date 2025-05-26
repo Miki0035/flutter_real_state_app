@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_state_app/data/repository/dummy_repository.dart';
+import 'package:flutter_restate_app/data/repository/dummy_repository.dart';
 
 import 'explore_search_bar_provider.dart';
 

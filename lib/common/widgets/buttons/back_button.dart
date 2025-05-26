@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/utilis/constants/colors.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/utilis/constants/colors.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
 
 class MBackButton extends StatelessWidget {
   const MBackButton(

@@ -25,7 +25,6 @@ class NetworkManager extends ChangeNotifier {
 
   Future<void> _updateConnectionStatus(List<ConnectivityResult> result) async {
     _connectionStatus = result;
-    print('Connectivity Changed : $_connectionStatus');
     notifyListeners();
   }
 

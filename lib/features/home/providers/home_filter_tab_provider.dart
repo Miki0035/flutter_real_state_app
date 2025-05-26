@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/data/repository/dummy_repository.dart';
+import 'package:flutter_restate_app/data/repository/dummy_repository.dart';
 
 class HomeFilterTabProvider with ChangeNotifier {
   int selectedIndex = 0;

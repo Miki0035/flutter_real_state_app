@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/features/detail/screens/widgets/icon_with_text.dart';
-import 'package:real_state_app/features/detail/screens/widgets/rating_review_container.dart';
-import 'package:real_state_app/features/detail/screens/widgets/text_with_background_and_radius.dart';
-import 'package:real_state_app/utilis/constants/colors.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
-import 'package:real_state_app/utilis/constants/sizes.dart';
+import 'package:flutter_restate_app/features/detail/screens/widgets/icon_with_text.dart';
+import 'package:flutter_restate_app/features/detail/screens/widgets/rating_review_container.dart';
+import 'package:flutter_restate_app/features/detail/screens/widgets/text_with_background_and_radius.dart';
+import 'package:flutter_restate_app/utilis/constants/colors.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 
 class MApartmentDescription extends StatelessWidget {
   const MApartmentDescription({

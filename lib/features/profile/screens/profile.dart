@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_state_app/common/widgets/app_bars/sliver_appbar.dart';
-import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
-import 'package:real_state_app/features/profile/models/profile_menu.dart';
-import 'package:real_state_app/features/profile/screens/widgets/custom_list_tile.dart';
-import 'package:real_state_app/features/profile/screens/widgets/profile_image_with_username.dart';
-import 'package:real_state_app/utilis/constants/colors.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
-import 'package:real_state_app/utilis/constants/sizes.dart';
-import 'package:real_state_app/utilis/constants/texts.dart';
-import 'package:real_state_app/utilis/popups/full_screen_loader.dart';
+import 'package:flutter_restate_app/common/widgets/app_bars/sliver_appbar.dart';
+import 'package:flutter_restate_app/common/widgets/icons/appbar_icon_with_notification.dart';
+import 'package:flutter_restate_app/features/profile/models/profile_menu.dart';
+import 'package:flutter_restate_app/features/profile/screens/widgets/custom_list_tile.dart';
+import 'package:flutter_restate_app/features/profile/screens/widgets/profile_image_with_username.dart';
+import 'package:flutter_restate_app/utilis/constants/colors.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/utilis/constants/sizes.dart';
+import 'package:flutter_restate_app/utilis/constants/texts.dart';
+import 'package:flutter_restate_app/utilis/popups/full_screen_loader.dart';
 
 import '../../../data/repository/authentication_repository.dart';
 
@@ -33,18 +33,6 @@ class MProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: const MAppBar(
-      //   title: Text(
-      //     MText.profile,
-      //     style: TextStyle(
-      //         fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
-      //   ),
-      //   actions: [
-      //     MAppBarIconNotification(
-      //       icon: MImage.bell,
-      //     )
-      //   ],
-      // ),
       body: CustomScrollView(
         slivers: [
           const MSliverAppBar(
@@ -105,6 +93,7 @@ class MProfileScreen extends StatelessWidget {
                         title: menu.$2.title,
                         onTap: menu.$1 == lowerListMenus.length - 1
                             ? () async {
+                                MScreenNotifier.openLoadingDialog(context);
                                 try {
                                   final result = await Provider.of<
                                               AuthenticationRepository>(context,
@@ -120,6 +109,10 @@ class MProfileScreen extends StatelessWidget {
                                     MScreenNotifier.showSnackBar(context,
                                         "Problem occurred while logging you out, please try again",
                                         backgroundColor: Colors.redAccent);
+                                  }
+                                } finally {
+                                  if (context.mounted) {
+                                    MScreenNotifier.stopLoadingDialog(context);
                                   }
                                 }
                               }

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_state_app/common/widgets/app_bars/sliver_appbar.dart';
-import 'package:real_state_app/common/widgets/container/no_results_container.dart';
-import 'package:real_state_app/common/widgets/texts/headline_text.dart';
-import 'package:real_state_app/common/widgets/icons/appbar_icon_with_notification.dart';
-import 'package:real_state_app/common/widgets/search_bar.dart';
-import 'package:real_state_app/common/widgets/texts/leading_text.dart';
-import 'package:real_state_app/common/widgets/texts/trailing_text.dart';
-import 'package:real_state_app/features/home/providers/home_filter_tab_provider.dart';
-import 'package:real_state_app/features/home/providers/home_search_bar_provider.dart';
-import 'package:real_state_app/features/home/screens/widgets/carousel_item_widget.dart';
-import 'package:real_state_app/features/home/screens/widgets/custom_grid_view_item.dart';
-import 'package:real_state_app/features/home/screens/widgets/home_menu_item.dart';
-import 'package:real_state_app/utilis/constants/colors.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
-import 'package:real_state_app/utilis/constants/sizes.dart';
+import 'package:flutter_restate_app/common/widgets/app_bars/sliver_appbar.dart';
+import 'package:flutter_restate_app/common/widgets/container/no_results_container.dart';
+import 'package:flutter_restate_app/common/widgets/texts/headline_text.dart';
+import 'package:flutter_restate_app/common/widgets/icons/appbar_icon_with_notification.dart';
+import 'package:flutter_restate_app/common/widgets/search_bar.dart';
+import 'package:flutter_restate_app/common/widgets/texts/leading_text.dart';
+import 'package:flutter_restate_app/common/widgets/texts/trailing_text.dart';
+import 'package:flutter_restate_app/features/home/providers/home_filter_tab_provider.dart';
+import 'package:flutter_restate_app/features/home/providers/home_search_bar_provider.dart';
+import 'package:flutter_restate_app/features/home/screens/widgets/carousel_item_widget.dart';
+import 'package:flutter_restate_app/features/home/screens/widgets/custom_grid_view_item.dart';
+import 'package:flutter_restate_app/features/home/screens/widgets/home_menu_item.dart';
+import 'package:flutter_restate_app/utilis/constants/colors.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class MHomeScreen extends StatelessWidget {

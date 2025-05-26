@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_state_app/features/navigation/providers/bottom_navigation_provider.dart';
-import 'package:real_state_app/utilis/constants/colors.dart';
-import 'package:real_state_app/utilis/constants/sizes.dart';
+import 'package:flutter_restate_app/features/navigation/providers/bottom_navigation_provider.dart';
+import 'package:flutter_restate_app/utilis/constants/colors.dart';
+import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 
 class MBottomNavigationMenu extends StatelessWidget {
   const MBottomNavigationMenu({

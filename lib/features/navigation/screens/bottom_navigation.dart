@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:real_state_app/features/navigation/models/navigation_menu.dart';
-import 'package:real_state_app/features/navigation/providers/bottom_navigation_provider.dart';
-import 'package:real_state_app/features/navigation/screens/widgets/custom_bottom_navigation_menu.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
-import 'package:real_state_app/utilis/constants/texts.dart';
+import 'package:flutter_restate_app/features/navigation/models/navigation_menu.dart';
+import 'package:flutter_restate_app/features/navigation/providers/bottom_navigation_provider.dart';
+import 'package:flutter_restate_app/features/navigation/screens/widgets/custom_bottom_navigation_menu.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/utilis/constants/texts.dart';
 
 class MBottomNavigation extends StatelessWidget {
   MBottomNavigation({super.key});

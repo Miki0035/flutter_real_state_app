@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:real_state_app/features/login/screens/widgets/text_icon_button.dart';
-import 'package:real_state_app/utilis/constants/colors.dart';
-import 'package:real_state_app/utilis/constants/images.dart';
-import 'package:real_state_app/utilis/constants/sizes.dart';
-import 'package:real_state_app/utilis/constants/texts.dart';
+import 'package:flutter_restate_app/features/login/screens/widgets/text_icon_button.dart';
+import 'package:flutter_restate_app/utilis/constants/colors.dart';
+import 'package:flutter_restate_app/utilis/constants/images.dart';
+import 'package:flutter_restate_app/utilis/constants/sizes.dart';
+import 'package:flutter_restate_app/utilis/constants/texts.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

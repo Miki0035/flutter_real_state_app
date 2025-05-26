@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:real_state_app/data/repository/dummy_repository.dart';
-import 'package:real_state_app/features/home/models/apartment_model.dart';
-import 'package:real_state_app/utilis/classes/abstract_home_explore_search_provider_class.dart';
+import 'package:flutter_restate_app/data/repository/dummy_repository.dart';
+import 'package:flutter_restate_app/features/home/models/apartment_model.dart';
+import 'package:flutter_restate_app/utilis/classes/abstract_home_explore_search_provider_class.dart';
 
 class HomeSearchBarProvider extends BaseSearchBarProvider {
   @override
