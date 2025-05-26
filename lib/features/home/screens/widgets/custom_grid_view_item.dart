@@ -29,7 +29,7 @@ class MHomeGridItem extends StatelessWidget {
             context, MaterialPageRoute(builder: (context) => MDetailScreen()));
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
         decoration: BoxDecoration(
             color: Colors.white, borderRadius: BorderRadius.circular(12.0)),
         child: Column(
@@ -39,15 +39,14 @@ class MHomeGridItem extends StatelessWidget {
             const SizedBox(
               height: 8.0,
             ),
-            Text(
-              apartmentName,
-              style: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: MSize.fontSizeMd,
+            Expanded(
+              child: Text(
+                apartmentName,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: MSize.fontSizeMd,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 4.0,
             ),
             Text(
               location,

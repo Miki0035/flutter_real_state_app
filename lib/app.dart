@@ -17,5 +17,6 @@ class MyApp extends StatelessWidget {
             home: auth.status != AuthStatus.authenticated
                 ? const LoginScreen()
                 : MBottomNavigation()));
+
   }
 }

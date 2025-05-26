@@ -5,6 +5,7 @@ import 'package:real_state_app/utilis/constants/colors.dart';
 import 'package:real_state_app/utilis/constants/images.dart';
 import 'package:real_state_app/utilis/constants/sizes.dart';
 import 'package:real_state_app/utilis/constants/texts.dart';
+import 'package:real_state_app/utilis/networks/network_manager.dart';
 import 'package:real_state_app/utilis/popups/full_screen_loader.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -36,13 +37,25 @@ class MTextIconButton extends StatelessWidget {
         onPressed: () async {
           MScreenNotifier.openLoadingDialog(context);
           try {
-            final response = await Provider.of<AuthenticationRepository>(
-                    context,
-                    listen: false)
-                .signInWithProvider(provider: OAuthProvider.google);
+            final authRepo =
+                Provider.of<AuthenticationRepository>(context, listen: false);
+            final isConnected =
+                await Provider.of<NetworkManager>(context, listen: false)
+                    .isConnected();
+            // NO INTERNET CONNECTION
+            if (!isConnected && context.mounted) {
+              MScreenNotifier.showSnackBar(
+                  context, "Please connect to the internet",
+                  backgroundColor: Colors.red);
+              return;
+            }
+            // STARTS AUTHENTICATION
+            final response = await authRepo.signInWithProvider(
+                provider: OAuthProvider.google);
             if (response && context.mounted) {
               MScreenNotifier.showSnackBar(context, "Logged in successfully",
                   backgroundColor: Colors.green);
+              return;
             }
           } catch (e) {
             if (context.mounted) {

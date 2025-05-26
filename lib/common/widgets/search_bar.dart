@@ -20,37 +20,33 @@ class MSearchBar<T extends BaseSearchBarProvider> extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 300,
-                    child: TextFormField(
-                      controller: provider.query,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        icon: Image.asset(
-                          MImage.search,
-                          width: 25,
-                          height: 25,
-                        ),
-                        labelText: "Search Something",
-                        labelStyle: const TextStyle(
-                            fontSize: MSize.fontSizeSm,
-                            color: MColor.lightBlack),
+          child: IntrinsicHeight(
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    controller: provider.query,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      icon: Image.asset(
+                        MImage.search,
+                        width: 25,
+                        height: 25,
                       ),
+                      labelText: "Search Something",
+                      labelStyle: const TextStyle(
+                          fontSize: MSize.fontSizeSm, color: MColor.lightBlack),
                     ),
                   ),
-                ],
-              ),
-              Image.asset(
-                MImage.filter,
-                width: 25,
-                height: 25,
-              )
-            ],
+                ),
+                const SizedBox(width: 12),
+                Image.asset(
+                  MImage.filter,
+                  width: 25,
+                  height: 25,
+                )
+              ],
+            ),
           ),
         ),
       ),

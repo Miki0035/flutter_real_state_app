@@ -29,7 +29,7 @@ class MScreenNotifier {
         content: Text(
           message,
           style:
-          const TextStyle(color: Colors.white, fontSize: MSize.fontSizeMd),
+          const TextStyle(color: Colors.white, fontSize: MSize.fontSizeLg),
         ),
         backgroundColor: backgroundColor,
         duration: const Duration(seconds: 2),

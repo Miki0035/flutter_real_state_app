@@ -163,16 +163,18 @@ class MHomeScreen extends StatelessWidget {
                         final apartments = providerA.filteredApartments;
 
                         if (apartments.isNotEmpty) {
+                          final crossAxisCount =
+                              MediaQuery.of(context).size.width ~/ 180;
                           return GridView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: providerA.filteredApartments.length,
                             gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: crossAxisCount,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 20,
-                              childAspectRatio: 8 / 14.2,
+                              childAspectRatio: 3/5,
                             ),
                             itemBuilder: (_, index) => MHomeGridItem(
                               image: providerA.filteredApartments[index].image,

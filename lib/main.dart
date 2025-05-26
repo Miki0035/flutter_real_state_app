@@ -8,6 +8,7 @@ import 'package:real_state_app/features/explore/providers/explore_search_bar_pro
 import 'package:real_state_app/features/home/providers/home_filter_tab_provider.dart';
 import 'package:real_state_app/features/home/providers/home_search_bar_provider.dart';
 import 'package:real_state_app/features/navigation/providers/bottom_navigation_provider.dart';
+import 'package:real_state_app/utilis/networks/network_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,6 +16,7 @@ void main() async {
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => AuthenticationRepository()),
+    ChangeNotifierProvider(create: (_) => NetworkManager()),
     ChangeNotifierProvider(create: (_) => NavigationProvider()),
     ChangeNotifierProvider(create: (_) => HomeSearchBarProvider()),
     ChangeNotifierProvider(create: (_) => HomeFilterTabProvider()),
