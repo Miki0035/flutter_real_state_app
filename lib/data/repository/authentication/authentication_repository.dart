@@ -15,9 +15,24 @@ class AuthenticationRepository extends ChangeNotifier {
 
   AuthStatus get status => _status;
 
+  SupabaseClient get client => _client;
+
   AuthenticationRepository()
       : _client = SupabaseClient(
             dotenv.env["SUPABASE_URL"]!, dotenv.env["SUPABASE_ANON_KEY"]!) {
+
+    _client.auth.onAuthStateChange.listen((data) {
+      final event = data.event;
+
+      if (event == AuthChangeEvent.signedIn ||
+          event == AuthChangeEvent.tokenRefreshed) {
+        getCurrentUser();
+      } else if (event == AuthChangeEvent.signedOut) {
+        _currentUser = null;
+        _status = AuthStatus.unauthenticated;
+        notifyListeners();
+      }
+    });
     getCurrentUser();
   }
 
@@ -77,6 +92,7 @@ class AuthenticationRepository extends ChangeNotifier {
         idToken: idToken,
         accessToken: accessToken,
       );
+      await getCurrentUser();
       _status = AuthStatus.authenticated;
       return true;
     } catch (e) {

@@ -1,4 +1,6 @@
+import 'package:fade_shimmer/fade_shimmer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_restate_app/data/repository/authentication/authentication_repository.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_restate_app/common/widgets/app_bars/sliver_appbar.dart';
 import 'package:flutter_restate_app/common/widgets/container/no_results_container.dart';
@@ -40,7 +42,7 @@ class MHomeScreen extends StatelessWidget {
                     height: 55,
                     fit: BoxFit.fill,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 150,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -52,13 +54,22 @@ class MHomeScreen extends StatelessWidget {
                               fontSize: MSize.fontSizeSm,
                               fontWeight: FontWeight.w500),
                         ),
-                        Text(
-                          "Mikiyas Kebede",
-                          style: TextStyle(
-                              color: MColor.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: MSize.fontSizeMd),
-                        ),
+                        Consumer<AuthenticationRepository>(
+                            builder: (_, auth, __) {
+                          if (auth.status != AuthStatus.authenticated) {
+                            return FadeShimmer(
+                                width: double.infinity,
+                                height: double.infinity);
+                          }
+
+                          return Text(
+                            auth.user?.userMetadata?['name'] ?? "No email",
+                            style: TextStyle(
+                                color: MColor.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: MSize.fontSizeMd),
+                          );
+                        }),
                       ],
                     ),
                   )
@@ -174,7 +185,7 @@ class MHomeScreen extends StatelessWidget {
                               crossAxisCount: crossAxisCount,
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 20,
-                              childAspectRatio: 3/5,
+                              childAspectRatio: 3 / 5,
                             ),
                             itemBuilder: (_, index) => MHomeGridItem(
                               image: providerA.filteredApartments[index].image,

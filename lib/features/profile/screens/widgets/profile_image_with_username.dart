@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restate_app/common/widgets/container/avatar_circular_image_container.dart';
+import 'package:flutter_restate_app/data/repository/authentication/authentication_repository.dart';
 import 'package:flutter_restate_app/utilis/constants/images.dart';
 import 'package:flutter_restate_app/utilis/constants/sizes.dart';
+import 'package:provider/provider.dart';
 
 class MAvatarHeading extends StatelessWidget {
   const MAvatarHeading({
@@ -35,10 +37,12 @@ class MAvatarHeading extends StatelessWidget {
             const SizedBox(
               height: MSize.spaceBtwItems,
             ),
-            const Text(
-              'Mikiyas Kebede',
-              style: TextStyle(
-                  fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
+            Consumer<AuthenticationRepository>(
+              builder: (_, auth, __) => Text(
+                auth.user?.userMetadata?['name'] ?? "No name",
+                style: const TextStyle(
+                    fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
+              ),
             )
           ],
         ),

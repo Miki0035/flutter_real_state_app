@@ -11,7 +11,7 @@ import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 import 'package:flutter_restate_app/utilis/constants/texts.dart';
 import 'package:flutter_restate_app/utilis/popups/full_screen_loader.dart';
 
-import '../../../data/repository/authentication_repository.dart';
+import '../../../data/repository/authentication/authentication_repository.dart';
 
 class MProfileScreen extends StatelessWidget {
   MProfileScreen({super.key});

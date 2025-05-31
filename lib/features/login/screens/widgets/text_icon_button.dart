@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_restate_app/data/repository/authentication_repository.dart';
+import 'package:flutter_restate_app/data/repository/authentication/authentication_repository.dart';
 import 'package:flutter_restate_app/utilis/constants/colors.dart';
 import 'package:flutter_restate_app/utilis/constants/images.dart';
 import 'package:flutter_restate_app/utilis/constants/sizes.dart';
