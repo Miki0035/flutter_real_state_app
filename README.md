@@ -17,7 +17,7 @@
 1. 👋 [Welcome](#welcome)
 2. ⚙️ [Tech Stack](#tech-stack)
 3. 🔋 [Features](#features)
-4. ☹️ [Alternate Version](#alternate-version)
+4. 🔄 [Alternate Version](#alternate-version)
 5. 🤸 [Quick Start](#quick-start)
 6. 🚀 [More](#more)
 
@@ -34,7 +34,8 @@ check it out 😮 and let me know what you think.
 - Flutter 3.4.0
 - Dart 3.4.0
 - Provider 6.1.2
-- Supabase Authentication
+- flutter supabase
+- flutter dotenv 
 
 ## <a name="features">🔋 Features</a>
 
@@ -45,9 +46,9 @@ their google accounts
 
 👉 **search and filter functionality**: search property by name or filter by different categories of properties
 
-## <a name="alternate-version"> ☹️ Alternate Version </a>
+## <a name="alternate-version"> 🔄 Alternate Version </a>
 
-- 🔄 By changing the branch of this repo to 'feature/fetchData' , you can see this app with full backend implementation with supabase. That means it has
+-  By changing the branch of this repo to 'feature/fetchData' , you can see this app with full backend implementation with supabase. That means it has
   - 👉 **Authentication**
   - 👉 **Data fetching from Database**
   
@@ -102,5 +103,3 @@ flutter run
   - SUPABASE_URL=[YOUR_URL]
   - SUPABASE_ANON_KEY=[YOUR_ANON_KEY]
 
-- For Password use strong password that contain more than 6 characters , at least one uppercase , at
-  least one number and one special characters
