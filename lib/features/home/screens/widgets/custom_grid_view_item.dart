@@ -13,8 +13,10 @@ class MHomeGridItem extends StatelessWidget {
     required this.apartmentName,
     required this.location,
     required this.price,
+    required this.id,
   });
 
+  final int id;
   final String image;
   final double rating;
   final String apartmentName;
@@ -26,7 +28,11 @@ class MHomeGridItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MDetailScreen()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => MDetailScreen(
+                      propertyId: id,
+                    )));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
@@ -35,7 +41,11 @@ class MHomeGridItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MStackImageWithRatingIconButton(image: image, rating: rating, height: 150,),
+            MStackImageWithRatingIconButton(
+              image: image,
+              rating: rating,
+              height: 150,
+            ),
             const SizedBox(
               height: 8.0,
             ),

@@ -1,3 +1,3 @@
-# real_state_app
-
-A new Flutter project.
+- shimmer effect
+- detail page for each property
+- property fetch agent , galleries , facilities, reviews

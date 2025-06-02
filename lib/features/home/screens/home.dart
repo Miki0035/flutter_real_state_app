@@ -115,16 +115,16 @@ class MHomeScreen extends StatelessWidget {
                               itemBuilder: (_, int itemIndex, __) {
                                 if (provider.properties.isNotEmpty) {
                                   return MCarouselItem(
-                                      image:
-                                          provider.properties[itemIndex].image,
-                                      apartmentName:
-                                          provider.properties[itemIndex].name,
-                                      location: provider
-                                          .properties[itemIndex].address,
-                                      rating:
-                                          provider.properties[itemIndex].rating,
-                                      price:
-                                          provider.properties[itemIndex].price);
+                                    image: provider.properties[itemIndex].image,
+                                    apartmentName:
+                                        provider.properties[itemIndex].name,
+                                    location:
+                                        provider.properties[itemIndex].address,
+                                    rating:
+                                        provider.properties[itemIndex].rating,
+                                    price: provider.properties[itemIndex].price,
+                                    id: provider.properties[itemIndex].id,
+                                  );
                                 } else {
                                   return const FadeShimmer(
                                     width: 260,
@@ -196,6 +196,7 @@ class MHomeScreen extends StatelessWidget {
                               childAspectRatio: 3 / 5,
                             ),
                             itemBuilder: (_, index) => MHomeGridItem(
+                              id: providerA.filteredApartments[index].id,
                               image: providerA.filteredApartments[index].image,
                               apartmentName:
                                   providerA.filteredApartments[index].name,

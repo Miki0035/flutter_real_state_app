@@ -9,29 +9,44 @@ import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 class MApartmentDescription extends StatelessWidget {
   const MApartmentDescription({
     super.key,
+    required this.name,
+    required this.type,
+    required this.rating,
+    required this.reviews,
+    required this.bedRooms,
+    required this.bathRooms,
+    required this.area,
   });
+
+  final String name;
+  final String type;
+  final double rating;
+  final int reviews;
+  final int bedRooms;
+  final int bathRooms;
+  final int area;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Modernica Apartement",
+        Text(
+          name,
           style: TextStyle(
               fontSize: MSize.fontSizeLg * 1.2, fontWeight: FontWeight.w600),
         ),
         const SizedBox(
           height: 8.0,
         ),
-        const Row(
+        Row(
           children: [
-            MTextBackgroundRadius(text: "Apartment"),
+            MTextBackgroundRadius(text: type),
             SizedBox(
               width: 14.0,
             ),
             MRatingReviewContainer(
-              rating: 4.8,
+              rating: rating,
               reviews: 1275,
             ),
           ],
@@ -39,19 +54,19 @@ class MApartmentDescription extends StatelessWidget {
         const SizedBox(
           height: 12.0,
         ),
-        const Row(
+        Row(
           children: [
             MApartementIconText(
               icon: MImage.bed,
-              text: "8 beds",
+              text: "$bedRooms beds",
             ),
             MApartementIconText(
               icon: MImage.bath,
-              text: "3 bath",
+              text: "$bathRooms bath",
             ),
             MApartementIconText(
               icon: MImage.area,
-              text: "2000 sqft",
+              text: "$area sqft",
             ),
           ],
         ),

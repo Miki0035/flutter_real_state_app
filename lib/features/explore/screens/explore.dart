@@ -121,7 +121,7 @@ class MExploreScreen extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => MDetailScreen()));
+                                        builder: (_) => MDetailScreen(propertyId: providerA.filteredApartments[index].id,)));
                               },
                               child: Container(
                                 decoration: BoxDecoration(
