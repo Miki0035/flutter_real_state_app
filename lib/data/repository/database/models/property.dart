@@ -1,4 +1,5 @@
 class Property {
+  final int id;
   final String image;
   final String name;
   final String type;
@@ -7,13 +8,14 @@ class Property {
   final String description;
   final String address;
   final double rating;
-  final double area;
+  final int area;
   final int bedRooms;
   final int bathRooms;
   final int price;
 
   Property(
-      {required this.image,
+      {required this.id,
+      required this.image,
       required this.type,
       required this.geolocation,
       required this.agent,
@@ -41,5 +43,23 @@ class Property {
       "description": description,
       "area": area,
     };
+  }
+
+  factory Property.fromMap(Map<String, dynamic> property) {
+    return Property(
+      id: property['id'] as int,
+      image: property['image'] as String,
+      type: property['type'] as String,
+      geolocation: property['geolocation'] as String,
+      agent: property['agent'] as int,
+      price: property['price'] as int,
+      bathRooms: property['bath_rooms'] as int,
+      bedRooms: property['bed_rooms'] as int,
+      name: property['name'] as String,
+      rating: property['rating'] as double,
+      description: property['description'] as String,
+      area: property['area'] as int,
+      address: property['address'] as String,
+    );
   }
 }

@@ -162,7 +162,7 @@ class MExploreScreen extends StatelessWidget {
                                                 MLeadingText(
                                                   text: providerA
                                                       .filteredApartments[index]
-                                                      .apartmentName,
+                                                      .name,
                                                 ),
                                                 const SizedBox(
                                                   height: 8.0,
@@ -170,7 +170,7 @@ class MExploreScreen extends StatelessWidget {
                                                 MTrailingText(
                                                   text: providerA
                                                       .filteredApartments[index]
-                                                      .location,
+                                                      .address,
                                                   fontSize: MSize.fontSizeSm,
                                                   color: MColor.veryLightBlack,
                                                 ),

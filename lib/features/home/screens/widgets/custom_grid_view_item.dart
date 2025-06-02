@@ -35,7 +35,7 @@ class MHomeGridItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MStackImageWithRatingIconButton(image: image, rating: rating),
+            MStackImageWithRatingIconButton(image: image, rating: rating, height: 150,),
             const SizedBox(
               height: 8.0,
             ),

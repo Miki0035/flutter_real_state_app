@@ -47,7 +47,7 @@ class MHomeScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Good Morning",
                           style: TextStyle(
                               color: MColor.veryLightBlack,
@@ -57,14 +57,12 @@ class MHomeScreen extends StatelessWidget {
                         Consumer<AuthenticationRepository>(
                             builder: (_, auth, __) {
                           if (auth.status != AuthStatus.authenticated) {
-                            return FadeShimmer(
-                                width: double.infinity,
-                                height: double.infinity);
+                            return const SizedBox.shrink();
                           }
 
                           return Text(
                             auth.user?.userMetadata?['name'] ?? "No email",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: MColor.black,
                                 fontWeight: FontWeight.w500,
                                 fontSize: MSize.fontSizeMd),
@@ -109,23 +107,33 @@ class MHomeScreen extends StatelessWidget {
                       builder: (context, provider, child) {
                         if (provider.searchText.isEmpty) {
                           return CarouselSlider.builder(
-                            options: CarouselOptions(
-                              height: 250,
-                              scrollDirection: Axis.horizontal,
-                            ),
-                            itemCount: provider.apartments.length,
-                            itemBuilder: (_, int itemIndex, __) =>
-                                MCarouselItem(
-                                    image: provider.apartments[itemIndex].image,
-                                    apartmentName: provider
-                                        .apartments[itemIndex].apartmentName,
-                                    location:
-                                        provider.apartments[itemIndex].location,
-                                    rating:
-                                        provider.apartments[itemIndex].rating,
-                                    price:
-                                        provider.apartments[itemIndex].price),
-                          );
+                              options: CarouselOptions(
+                                height: 250,
+                                scrollDirection: Axis.horizontal,
+                              ),
+                              itemCount: provider.properties.length,
+                              itemBuilder: (_, int itemIndex, __) {
+                                if (provider.properties.isNotEmpty) {
+                                  return MCarouselItem(
+                                      image:
+                                          provider.properties[itemIndex].image,
+                                      apartmentName:
+                                          provider.properties[itemIndex].name,
+                                      location: provider
+                                          .properties[itemIndex].address,
+                                      rating:
+                                          provider.properties[itemIndex].rating,
+                                      price:
+                                          provider.properties[itemIndex].price);
+                                } else {
+                                  return const FadeShimmer(
+                                    width: 260,
+                                    height: 250,
+                                    radius: 4,
+                                    fadeTheme: FadeTheme.light,
+                                  );
+                                }
+                              });
                         } else {
                           return const SizedBox.shrink();
                         }
@@ -189,10 +197,10 @@ class MHomeScreen extends StatelessWidget {
                             ),
                             itemBuilder: (_, index) => MHomeGridItem(
                               image: providerA.filteredApartments[index].image,
-                              apartmentName: providerA
-                                  .filteredApartments[index].apartmentName,
+                              apartmentName:
+                                  providerA.filteredApartments[index].name,
                               location:
-                                  providerA.filteredApartments[index].location,
+                                  providerA.filteredApartments[index].address,
                               price: providerA.filteredApartments[index].price,
                               rating:
                                   providerA.filteredApartments[index].rating,

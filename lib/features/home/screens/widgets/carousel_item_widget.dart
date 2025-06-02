@@ -34,7 +34,7 @@ class MCarouselItem extends StatelessWidget {
             children: [
               // BACKGROUND IMAGE
               Positioned.fill(
-                child: Image.asset(
+                child: Image.network(
                   image,
                   fit: BoxFit.cover,
                 ),

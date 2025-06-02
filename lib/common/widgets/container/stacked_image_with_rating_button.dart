@@ -38,7 +38,7 @@ class MStackImageWithRatingIconButton extends StatelessWidget {
         child: Stack(
           children: [
             Positioned.fill(
-              child: Image.asset(
+              child: Image.network(
                 image,
                 fit: BoxFit.cover,
               ),

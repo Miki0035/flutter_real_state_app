@@ -2,9 +2,10 @@ import 'dart:math';
 import 'package:flutter_restate_app/data/repository/database/models/facility.dart';
 import 'package:flutter_restate_app/data/repository/database/models/property.dart';
 import 'package:flutter_restate_app/data/repository/database/models/review.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Seed {
-  final supbaseClient;
+  final SupabaseClient supbaseClient;
 
   Seed(this.supbaseClient);
 
@@ -140,29 +141,29 @@ class Seed {
   //   }
   // }
 
-  getProperties() {
-    for (int i = 1; i <= 10; i++) {
-      final property = Property(
-        image: propertiesImages[
-        (propertiesImages.length * Random().nextDouble()).floor()],
-        name: 'Property $i',
-        type: propertyTypes[
-        (propertyTypes.length * Random().nextDouble()).floor()],
-        geolocation: '192.168.1.$i, 192.168.1.$i',
-        price: (9000 * Random().nextDouble()).floor() + 1000,
-        area: (3000 * Random().nextDouble()).floor() + 500,
-        bedRooms: (5 * Random().nextDouble()).floor() + 1,
-        bathRooms: (5 * Random().nextDouble()).floor() + 1,
-        rating:
-        double.parse((Random().nextDouble() * 4 + 1).toStringAsFixed(1)),
-        agent: agents[(agents.length * Random().nextDouble()).floor()],
-        description: 'This is the description for Property $i',
-        address: '123 Property street, City $i',
-      );
-
-      properties.add(property);
-    }
-  }
+  // getProperties() {
+  //   for (int i = 1; i <= 10; i++) {
+  //     final property = Property(
+  //       image: propertiesImages[
+  //       (propertiesImages.length * Random().nextDouble()).floor()],
+  //       name: 'Property $i',
+  //       type: propertyTypes[
+  //       (propertyTypes.length * Random().nextDouble()).floor()],
+  //       geolocation: '192.168.1.$i, 192.168.1.$i',
+  //       price: (9000 * Random().nextDouble()).floor() + 1000,
+  //       area: (3000 * Random().nextDouble()).floor() + 500,
+  //       bedRooms: (5 * Random().nextDouble()).floor() + 1,
+  //       bathRooms: (5 * Random().nextDouble()).floor() + 1,
+  //       rating:
+  //       double.parse((Random().nextDouble() * 4 + 1).toStringAsFixed(1)),
+  //       agent: agents[(agents.length * Random().nextDouble()).floor()],
+  //       description: 'This is the description for Property $i',
+  //       address: '123 Property street, City $i',
+  //     );
+  //
+  //     properties.add(property);
+  //   }
+  // }
 
   Future<void> insertGalleries() async {
     // getReviews();
@@ -215,9 +216,8 @@ class Seed {
         });
       }
 
-      print('Successful seed: $pro');
     } catch (e) {
-      print("Somehthing went wrong seeding $e");
+      rethrow;
     }
   }
 }

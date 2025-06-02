@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_restate_app/data/repository/database/models/property.dart';
-import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DatabaseRepository extends ChangeNotifier {
-  final supbaseClient;
+  final SupabaseClient supbaseClient;
 
-  final List<Property> properties = [];
+  final List<Property> _properties = [];
 
-  DatabaseRepository(this.supbaseClient){
+  List<Property> get properties => _properties;
+
+  DatabaseRepository(this.supbaseClient) {
     getProperties();
   }
 
   Future<void> getProperties() async {
     try {
-      final response = await supbaseClient.from("properties").select();
-      if (response.data != null) {
-        print('Response: ${response.data}');
+      var response = await supbaseClient.from("properties").select();
+      for (var value in response) {
+        _properties.add(Property.fromMap(value));
       }
     } catch (e) {
-      print('Error getting properties: $e');
+      rethrow ;
     } finally {
       notifyListeners();
     }

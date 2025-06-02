@@ -1,25 +1,30 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_restate_app/data/repository/dummy_repository.dart';
-import 'package:flutter_restate_app/features/home/models/apartment_model.dart';
+import 'package:flutter_restate_app/data/repository/database/database_repository.dart';
+import 'package:flutter_restate_app/data/repository/database/models/property.dart';
 import 'package:flutter_restate_app/utilis/classes/abstract_home_explore_search_provider_class.dart';
 
 class ExploreSearchBarProvider extends BaseSearchBarProvider {
   @override
   final query = TextEditingController();
-
-  List<ApartmentModel> filteredApartments = [];
+  final DatabaseRepository dbRepo;
+  List<Property> filteredApartments = [];
+  List<Property> properties = [];
   String _searchText = "";
   Timer? _debounce;
 
-  final List<ApartmentModel> apartments = dummyApartments;
 
   String get searchText => _searchText;
 
-  ExploreSearchBarProvider() {
+  ExploreSearchBarProvider({required this.dbRepo}) {
     query.addListener(_onSearchChanged);
-    filteredApartments = apartments;
+    _init();
+  }
+
+  Future<void> _init() async {
+    properties = dbRepo.properties;
+    notifyListeners();
   }
 
   void _onSearchChanged() {
@@ -31,12 +36,12 @@ class ExploreSearchBarProvider extends BaseSearchBarProvider {
 
   @override
   void search(String selectedFilter) {
-    filteredApartments = apartments.where((apartment) {
+    filteredApartments = properties.where((property) {
       final matchesSearch =
-          apartment.apartmentName.trim().toLowerCase().contains(searchText);
+          property.name.trim().toLowerCase().contains(searchText);
 
       final matchesFilter = selectedFilter.toLowerCase() == 'all' ||
-          apartment.type.name.toLowerCase() == selectedFilter;
+          property.type.toLowerCase() == selectedFilter;
       return matchesSearch && matchesFilter;
     }).toList();
     // Defer notifyListeners() until after build frame finishes
