@@ -2,9 +2,10 @@ import 'dart:math';
 import 'package:flutter_restate_app/data/repository/database/models/facility.dart';
 import 'package:flutter_restate_app/data/repository/database/models/property.dart';
 import 'package:flutter_restate_app/data/repository/database/models/review.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Seed {
-  final supbaseClient;
+  final SupabaseClient supbaseClient;
 
   Seed(this.supbaseClient);
 
@@ -124,11 +125,11 @@ class Seed {
     for (int i = 1; i <= 10; i++) {
       final review = Review(
           avatar: reviewImages[
-          (reviewImages.length * Random().nextDouble()).floor()],
+              (reviewImages.length * Random().nextDouble()).floor()],
           name: 'Reviewer $i',
           review: "This is a reivew by Reviewer $i",
           rating:
-          double.parse((Random().nextDouble() * 4 + 1).toStringAsFixed(1)));
+              double.parse((Random().nextDouble() * 4 + 1).toStringAsFixed(1)));
       reviews.add(review);
     }
   }
@@ -144,17 +145,17 @@ class Seed {
     for (int i = 1; i <= 10; i++) {
       final property = Property(
         image: propertiesImages[
-        (propertiesImages.length * Random().nextDouble()).floor()],
+            (propertiesImages.length * Random().nextDouble()).floor()],
         name: 'Property $i',
         type: propertyTypes[
-        (propertyTypes.length * Random().nextDouble()).floor()],
+            (propertyTypes.length * Random().nextDouble()).floor()],
         geolocation: '192.168.1.$i, 192.168.1.$i',
         price: (9000 * Random().nextDouble()).floor() + 1000,
         area: (3000 * Random().nextDouble()).floor() + 500,
         bedRooms: (5 * Random().nextDouble()).floor() + 1,
         bathRooms: (5 * Random().nextDouble()).floor() + 1,
         rating:
-        double.parse((Random().nextDouble() * 4 + 1).toStringAsFixed(1)),
+            double.parse((Random().nextDouble() * 4 + 1).toStringAsFixed(1)),
         agent: agents[(agents.length * Random().nextDouble()).floor()],
         description: 'This is the description for Property $i',
         address: '123 Property street, City $i',
@@ -173,24 +174,21 @@ class Seed {
       //     .map((property) => property.toMap())
       //     .toList();
 
-      final pro =
-      await supbaseClient.from("properties").select();
+      final pro = await supbaseClient.from("properties").select();
 
-      final fac =
-      await supbaseClient.from("facilities").select();
+      final fac = await supbaseClient.from("facilities").select();
 
-      final gal =
-      await supbaseClient.from("galleries").select();
+      final gal = await supbaseClient.from("galleries").select();
 
-      final rev =
-      await supbaseClient.from("reviews").select();
+      final rev = await supbaseClient.from("reviews").select();
       final random = Random();
 
       for (final property in pro) {
         final propertyId = property['id'];
 
         // Randomly pick 1–3 facilities
-        final selectedFacilities = (fac..shuffle()).take(1 + random.nextInt(8)).toList();
+        final selectedFacilities =
+            (fac..shuffle()).take(1 + random.nextInt(8)).toList();
         for (final facility in selectedFacilities) {
           await supbaseClient.from('property_facility').insert({
             'property_id': propertyId,
@@ -199,7 +197,8 @@ class Seed {
         }
 
         // Randomly pick 1–2 galleries
-        final selectedGalleries = (gal..shuffle()).take(1 + random.nextInt(19)).toList();
+        final selectedGalleries =
+            (gal..shuffle()).take(1 + random.nextInt(19)).toList();
         for (final gallery in selectedGalleries) {
           await supbaseClient.from('property_gallery').insert({
             'property_id': propertyId,
@@ -214,10 +213,8 @@ class Seed {
           'review_id': selectedReview['id'],
         });
       }
-
-      print('Successful seed: $pro');
     } catch (e) {
-      print("Somehthing went wrong seeding $e");
+      rethrow;
     }
   }
 }

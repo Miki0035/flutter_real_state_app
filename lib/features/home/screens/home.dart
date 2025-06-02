@@ -47,7 +47,7 @@ class MHomeScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Good Morning",
                           style: TextStyle(
                               color: MColor.veryLightBlack,
@@ -64,7 +64,7 @@ class MHomeScreen extends StatelessWidget {
 
                           return Text(
                             auth.user?.userMetadata?['name'] ?? "No email",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: MColor.black,
                                 fontWeight: FontWeight.w500,
                                 fontSize: MSize.fontSizeMd),
