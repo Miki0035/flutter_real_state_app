@@ -12,8 +12,10 @@ class MCarouselItem extends StatelessWidget {
     required this.location,
     required this.rating,
     required this.price,
+    required this.id,
   });
 
+  final int id;
   final String image;
   final String apartmentName;
   final String location;
@@ -24,7 +26,11 @@ class MCarouselItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (_) => MDetailScreen())),
+          context,
+          MaterialPageRoute(
+              builder: (_) => MDetailScreen(
+                    id: id,
+                  ))),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12.0),
         child: SizedBox(

@@ -8,9 +8,9 @@ class MApartmentAgentContainer extends StatelessWidget {
     required this.agentName,
     this.relation = "",
     required this.agentImage,
-    this.size = 55,
+    this.size = 55,  this.isNetworkImage = false,
   });
-
+  final bool isNetworkImage;
   final String agentName;
   final String relation;
   final String agentImage;
@@ -24,6 +24,7 @@ class MApartmentAgentContainer extends StatelessWidget {
           image: agentImage,
           width: size,
           height: size,
+          isNetworkImage: isNetworkImage,
         ),
         const SizedBox(
           width: 8.0,

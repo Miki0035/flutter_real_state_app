@@ -12,17 +12,42 @@ import 'package:flutter_restate_app/features/navigation/providers/bottom_navigat
 import 'package:flutter_restate_app/utilis/networks/network_manager.dart';
 
 void main() async {
- WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => AuthenticationRepository()),
-    ChangeNotifierProvider(create: (_) => DatabaseRepository(AuthenticationRepository().client)),
+    ChangeNotifierProvider(
+        create: (_) => DatabaseRepository(AuthenticationRepository().client)),
     ChangeNotifierProvider(create: (_) => NetworkManager()),
     ChangeNotifierProvider(create: (_) => NavigationProvider()),
-    ChangeNotifierProvider(create: (_) => HomeSearchBarProvider()),
-    ChangeNotifierProvider(create: (_) => HomeFilterTabProvider()),
-    ChangeNotifierProvider(create: (_) => ExploreFilterTabProvider()),
-    ChangeNotifierProvider(create: (_) => ExploreSearchBarProvider()),
+    ChangeNotifierProxyProvider<DatabaseRepository, HomeSearchBarProvider>(
+      create: (context) => HomeSearchBarProvider(
+        dbRepo: Provider.of<DatabaseRepository>(context, listen: false),
+      ),
+      update: (context, dbRepo, previous) =>
+          HomeSearchBarProvider(dbRepo: dbRepo),
+    ),
+    ChangeNotifierProxyProvider<DatabaseRepository, HomeFilterTabProvider>(
+      create: (context) => HomeFilterTabProvider(
+        dbRepo: Provider.of<DatabaseRepository>(context, listen: false),
+      ),
+      update: (context, dbRepo, previous) =>
+          HomeFilterTabProvider(dbRepo: dbRepo),
+    ),
+    ChangeNotifierProxyProvider<DatabaseRepository, ExploreSearchBarProvider>(
+      create: (context) => ExploreSearchBarProvider(
+        dbRepo: Provider.of<DatabaseRepository>(context, listen: false),
+      ),
+      update: (context, dbRepo, previous) =>
+          ExploreSearchBarProvider(dbRepo: dbRepo),
+    ),
+    ChangeNotifierProxyProvider<DatabaseRepository, ExploreFilterTabProvider>(
+      create: (context) => ExploreFilterTabProvider(
+        dbRepo: Provider.of<DatabaseRepository>(context, listen: false),
+      ),
+      update: (context, dbRepo, previous) =>
+          ExploreFilterTabProvider(dbRepo: dbRepo),
+    ),
   ], child: const MyApp()));
 }

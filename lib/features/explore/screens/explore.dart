@@ -97,7 +97,7 @@ class MExploreScreen extends StatelessWidget {
                       builder: (__, providerA, ___, _) => MHeadline(
                         leading: MLeadingText(
                             text:
-                                "Found ${providerA.filteredApartments.length} Results"),
+                                "Found ${providerA.filteredProperties.length} Results"),
                       ),
                     ),
 
@@ -107,7 +107,7 @@ class MExploreScreen extends StatelessWidget {
                       builder: (context, providerA, providerB, _) {
                         // FILTER RESULT
                         providerA.search(providerB.selectedFilter);
-                        final apartments = providerA.filteredApartments;
+                        final apartments = providerA.filteredProperties;
                         if (apartments.isNotEmpty) {
                           return ListView.separated(
                             physics: const NeverScrollableScrollPhysics(),
@@ -115,13 +115,16 @@ class MExploreScreen extends StatelessWidget {
                               height: 16.0,
                             ),
                             shrinkWrap: true,
-                            itemCount: providerA.filteredApartments.length,
+                            itemCount: providerA.filteredProperties.length,
                             itemBuilder: (_, index) => GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => MDetailScreen()));
+                                        builder: (_) => MDetailScreen(
+                                              id: providerA
+                                                  .filteredProperties[index].id,
+                                            )));
                               },
                               child: Container(
                                 decoration: BoxDecoration(
@@ -150,7 +153,7 @@ class MExploreScreen extends StatelessWidget {
                                                     iconSize: 8.0,
                                                     top: 2,
                                                     image: providerA
-                                                        .filteredApartments[
+                                                        .filteredProperties[
                                                             index]
                                                         .image),
                                           ),
@@ -161,16 +164,16 @@ class MExploreScreen extends StatelessWidget {
                                               children: [
                                                 MLeadingText(
                                                   text: providerA
-                                                      .filteredApartments[index]
-                                                      .apartmentName,
+                                                      .filteredProperties[index]
+                                                      .name,
                                                 ),
                                                 const SizedBox(
                                                   height: 8.0,
                                                 ),
                                                 MTrailingText(
                                                   text: providerA
-                                                      .filteredApartments[index]
-                                                      .location,
+                                                      .filteredProperties[index]
+                                                      .address,
                                                   fontSize: MSize.fontSizeSm,
                                                   color: MColor.veryLightBlack,
                                                 ),
@@ -198,7 +201,7 @@ class MExploreScreen extends StatelessWidget {
                                             ),
                                             MTrailingText(
                                               text:
-                                                  "\$${providerA.filteredApartments[index].price}",
+                                                  "\$${providerA.filteredProperties[index].price}",
                                               fontSize: MSize.fontSizeLg,
                                             ),
                                           ],

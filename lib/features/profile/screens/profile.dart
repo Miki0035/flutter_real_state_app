@@ -95,11 +95,11 @@ class MProfileScreen extends StatelessWidget {
                             ? () async {
                                 MScreenNotifier.openLoadingDialog(context);
                                 try {
-                                  final result = await Provider.of<
+                                   await Provider.of<
                                               AuthenticationRepository>(context,
                                           listen: false)
                                       .logout();
-                                  if (result && context.mounted) {
+                                  if (context.mounted) {
                                     MScreenNotifier.showSnackBar(context,
                                         "You have successfully logged out",
                                         backgroundColor: Colors.green);

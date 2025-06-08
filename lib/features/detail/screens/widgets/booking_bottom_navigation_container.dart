@@ -6,7 +6,10 @@ import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 class MBookingBottomNavContainer extends StatelessWidget {
   const MBookingBottomNavContainer({
     super.key,
+    required this.price,
   });
+
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +37,9 @@ class MBookingBottomNavContainer extends StatelessWidget {
                       color: MColor.veryLightBlack,
                       fontWeight: FontWeight.w500),
                 ),
-                const Text(
-                  "\$17821",
-                  style: TextStyle(
+                 Text(
+                  "\$$price",
+                  style: const TextStyle(
                       fontSize: MSize.fontSizeLg * 1.2,
                       color: MColor.blue,
                       fontWeight: FontWeight.w600),

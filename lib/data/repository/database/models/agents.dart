@@ -2,8 +2,9 @@ class Agent {
   final String avatar;
   final String name;
   final String email;
+  final int id;
 
-  Agent({required this.avatar, required this.name, required this.email});
+  Agent({required this.id, required this.avatar, required this.name, required this.email});
 
   Map<String, dynamic> toMap() {
     return {

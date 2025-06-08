@@ -4,9 +4,11 @@ class ApartmentModel {
   final String location;
   final double rating;
   final int price;
+  final int id;
   final Type type;
 
   ApartmentModel({
+    required this.id,
     required this.image,
     required this.apartmentName,
     required this.location,

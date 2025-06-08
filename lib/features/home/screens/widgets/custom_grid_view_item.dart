@@ -13,8 +13,10 @@ class MHomeGridItem extends StatelessWidget {
     required this.apartmentName,
     required this.location,
     required this.price,
+    required this.id,
   });
 
+  final int id;
   final String image;
   final double rating;
   final String apartmentName;
@@ -25,8 +27,8 @@ class MHomeGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MDetailScreen()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => MDetailScreen(id: id)));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),

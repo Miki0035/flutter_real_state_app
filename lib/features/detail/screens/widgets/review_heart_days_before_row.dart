@@ -10,7 +10,7 @@ class MReviewHeartDaysBeforeRowContainer extends StatelessWidget {
     required this.postedDate,
   });
 
-  final int rating;
+  final double rating;
   final String postedDate;
 
   @override

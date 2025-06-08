@@ -113,18 +113,19 @@ class MHomeScreen extends StatelessWidget {
                               height: 250,
                               scrollDirection: Axis.horizontal,
                             ),
-                            itemCount: provider.apartments.length,
+                            itemCount: provider.properties.length,
                             itemBuilder: (_, int itemIndex, __) =>
                                 MCarouselItem(
-                                    image: provider.apartments[itemIndex].image,
-                                    apartmentName: provider
-                                        .apartments[itemIndex].apartmentName,
+                                    id: provider.properties[itemIndex].id,
+                                    image: provider.properties[itemIndex].image,
+                                    apartmentName:
+                                        provider.properties[itemIndex].name,
                                     location:
-                                        provider.apartments[itemIndex].location,
+                                        provider.properties[itemIndex].address,
                                     rating:
-                                        provider.apartments[itemIndex].rating,
+                                        provider.properties[itemIndex].rating,
                                     price:
-                                        provider.apartments[itemIndex].price),
+                                        provider.properties[itemIndex].price),
                           );
                         } else {
                           return const SizedBox.shrink();
@@ -171,7 +172,7 @@ class MHomeScreen extends StatelessWidget {
                       builder: (__, providerA, providerB, _) {
                         providerA.search(providerB.selectedFilter);
 
-                        final apartments = providerA.filteredApartments;
+                        final apartments = providerA.filteredProperties;
 
                         if (apartments.isNotEmpty) {
                           final crossAxisCount =
@@ -179,7 +180,7 @@ class MHomeScreen extends StatelessWidget {
                           return GridView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: providerA.filteredApartments.length,
+                            itemCount: providerA.filteredProperties.length,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: crossAxisCount,
@@ -188,14 +189,15 @@ class MHomeScreen extends StatelessWidget {
                               childAspectRatio: 3 / 5,
                             ),
                             itemBuilder: (_, index) => MHomeGridItem(
-                              image: providerA.filteredApartments[index].image,
-                              apartmentName: providerA
-                                  .filteredApartments[index].apartmentName,
+                              id: providerA.filteredProperties[index].id,
+                              image: providerA.filteredProperties[index].image,
+                              apartmentName:
+                                  providerA.filteredProperties[index].name,
                               location:
-                                  providerA.filteredApartments[index].location,
-                              price: providerA.filteredApartments[index].price,
+                                  providerA.filteredProperties[index].address,
+                              price: providerA.filteredProperties[index].price,
                               rating:
-                                  providerA.filteredApartments[index].rating,
+                                  providerA.filteredProperties[index].rating,
                             ),
                           );
                         } else {
