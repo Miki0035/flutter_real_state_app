@@ -71,6 +71,9 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(
                   height: MSize.spaceBtwItems,
                 ),
+                // kIsWeb
+                //     ? buildSignInButton(onPressed: (context) => _handleWebSignIn(context))
+                //     : const MTextIconButton()
                 const MTextIconButton()
               ],
             ),

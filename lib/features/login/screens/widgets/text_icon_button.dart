@@ -7,7 +7,6 @@ import 'package:flutter_restate_app/utilis/constants/sizes.dart';
 import 'package:flutter_restate_app/utilis/constants/texts.dart';
 import 'package:flutter_restate_app/utilis/networks/network_manager.dart';
 import 'package:flutter_restate_app/utilis/popups/full_screen_loader.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MTextIconButton extends StatelessWidget {
   const MTextIconButton({
@@ -50,8 +49,7 @@ class MTextIconButton extends StatelessWidget {
               return;
             }
             // STARTS AUTHENTICATION
-            final response = await authRepo.signInWithProvider(
-                provider: OAuthProvider.google);
+            final response = await authRepo.signInWithProvider();
             if (response && context.mounted) {
               MScreenNotifier.showSnackBar(context, "Logged in successfully",
                   backgroundColor: Colors.green);
@@ -60,7 +58,7 @@ class MTextIconButton extends StatelessWidget {
           } catch (e) {
             if (context.mounted) {
               MScreenNotifier.showSnackBar(context,
-                  "Problem occured while signing you in, please try again",
+                  "Problem occured while signing you in, please try again $e",
                   backgroundColor: Colors.redAccent);
             }
           } finally {

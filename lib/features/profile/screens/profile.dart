@@ -95,19 +95,20 @@ class MProfileScreen extends StatelessWidget {
                             ? () async {
                                 MScreenNotifier.openLoadingDialog(context);
                                 try {
-                                   await Provider.of<
-                                              AuthenticationRepository>(context,
+                                  await Provider.of<AuthenticationRepository>(
+                                          context,
                                           listen: false)
                                       .logout();
                                   if (context.mounted) {
                                     MScreenNotifier.showSnackBar(context,
                                         "You have successfully logged out",
                                         backgroundColor: Colors.green);
+                                    return;
                                   }
                                 } catch (e) {
                                   if (context.mounted) {
                                     MScreenNotifier.showSnackBar(context,
-                                        "Problem occurred while logging you out, please try again",
+                                        "Problem occurred while logging you out, please try again $e",
                                         backgroundColor: Colors.redAccent);
                                   }
                                 } finally {

@@ -1,4 +1,5 @@
 import 'package:fade_shimmer/fade_shimmer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_restate_app/data/repository/authentication/authentication_repository.dart';
 import 'package:provider/provider.dart';
@@ -56,14 +57,14 @@ class MHomeScreen extends StatelessWidget {
                         ),
                         Consumer<AuthenticationRepository>(
                             builder: (_, auth, __) {
-                          if (auth.status != AuthStatus.authenticated) {
+                          if (auth.user == null) {
                             return FadeShimmer(
                                 width: double.infinity,
                                 height: double.infinity);
                           }
 
                           return Text(
-                            auth.user?.userMetadata?['name'] ?? "No email",
+                            auth.user?.displayName ?? 'No name',
                             style: const TextStyle(
                                 color: MColor.black,
                                 fontWeight: FontWeight.w500,
@@ -175,8 +176,9 @@ class MHomeScreen extends StatelessWidget {
                         final apartments = providerA.filteredProperties;
 
                         if (apartments.isNotEmpty) {
-                          final crossAxisCount =
-                              MediaQuery.of(context).size.width ~/ 180;
+                          final crossAxisCount = kIsWeb
+                              ? 2
+                              : MediaQuery.of(context).size.width ~/ 180;
                           return GridView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),

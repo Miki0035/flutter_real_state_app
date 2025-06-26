@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_restate_app/data/repository/database/database_repository.dart';
@@ -11,14 +12,18 @@ import 'package:flutter_restate_app/features/home/providers/home_search_bar_prov
 import 'package:flutter_restate_app/features/navigation/providers/bottom_navigation_provider.dart';
 import 'package:flutter_restate_app/utilis/networks/network_manager.dart';
 
+import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => AuthenticationRepository()),
-    ChangeNotifierProvider(
-        create: (_) => DatabaseRepository(AuthenticationRepository().client)),
+    ChangeNotifierProvider(create: (_) => DatabaseRepository()),
     ChangeNotifierProvider(create: (_) => NetworkManager()),
     ChangeNotifierProvider(create: (_) => NavigationProvider()),
     ChangeNotifierProxyProvider<DatabaseRepository, HomeSearchBarProvider>(

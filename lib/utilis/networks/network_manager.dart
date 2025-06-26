@@ -5,8 +5,8 @@ import 'dart:async';
 
 class NetworkManager extends ChangeNotifier {
   final Connectivity _connectivity = Connectivity();
+
   // late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
-  List<ConnectivityResult> _connectionStatus = [ConnectivityResult.none];
 
   NetworkManager() {
     initConnectivity();
@@ -24,7 +24,6 @@ class NetworkManager extends ChangeNotifier {
   }
 
   Future<void> _updateConnectionStatus(List<ConnectivityResult> result) async {
-    _connectionStatus = result;
     notifyListeners();
   }
 

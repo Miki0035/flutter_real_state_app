@@ -39,7 +39,7 @@ class MAvatarHeading extends StatelessWidget {
             ),
             Consumer<AuthenticationRepository>(
               builder: (_, auth, __) => Text(
-                auth.user?.userMetadata?['name'] ?? "No name",
+                auth.user?.displayName ?? "No name",
                 style: const TextStyle(
                     fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
               ),

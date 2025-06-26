@@ -8,11 +8,8 @@ import 'package:flutter_restate_app/data/repository/database/models/review.dart'
 import 'package:flutter_restate_app/features/home/models/apartment_model.dart';
 import 'package:flutter_restate_app/utilis/constants/images.dart';
 import 'package:latlng/latlng.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DatabaseRepository extends ChangeNotifier {
-  final SupabaseClient supbaseClient;
-
   final List<Gallery> galleries = [
     Gallery(
       image: MImage.japan,
@@ -400,14 +397,13 @@ class DatabaseRepository extends ChangeNotifier {
 
   final List<String> menus = ["All", "House", "Villa", "Apartments", "Others"];
 
-  DatabaseRepository(this.supbaseClient);
-
   Property getProperty(int id) {
     final property = properties.firstWhere((property) => property.id == id);
     property.galleries =
         galleries.where((gallery) => gallery.property == property.id).toList();
     property.agent = agents[Random().nextInt(agents.length)];
-    property.reviews = reviews.where((review) => review.property == property.id).toList();
+    property.reviews =
+        reviews.where((review) => review.property == property.id).toList();
     return property;
   }
 }

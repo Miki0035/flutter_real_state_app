@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "949515007744",
+    "project_id": "flutter-real-state-app",
+    "storage_bucket": "flutter-real-state-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949515007744:android:073bbccdae4ea946a525e5",
+        "android_client_info": {
+          "package_name": "com.example.real_state_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949515007744-creqfd0u11n8dvhe7s7lb0l3jsujvm71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUBy7LnjYx4gvWpbzfxA6HP5Cx804npd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949515007744-creqfd0u11n8dvhe7s7lb0l3jsujvm71.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "949515007744-suh1ia20jvm5n6pj5igjqkr62f00h6r2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.realStateApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

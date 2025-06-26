@@ -1,54 +1,32 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-enum AuthStatus { uninitialized, authenticated, unauthenticated }
 
 class AuthenticationRepository extends ChangeNotifier {
-  final SupabaseClient _client;
-  AuthStatus _status = AuthStatus.uninitialized;
+  final _auth = FirebaseAuth.instance;
 
-  User? _currentUser;
+  User? get user => _auth.currentUser;
 
-  User? get user => _currentUser;
+  final List<String> scopes = <String>[
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ];
 
-  AuthStatus get status => _status;
-
-  SupabaseClient get client => _client;
-
-  AuthenticationRepository()
-      : _client = SupabaseClient(
-            dotenv.env["SUPABASE_URL"]!, dotenv.env["SUPABASE_ANON_KEY"]!) {
-
-    _client.auth.onAuthStateChange.listen((data) {
-      final event = data.event;
-
-      if (event == AuthChangeEvent.signedIn ||
-          event == AuthChangeEvent.tokenRefreshed) {
-        getCurrentUser();
-      } else if (event == AuthChangeEvent.signedOut) {
-        _currentUser = null;
-        _status = AuthStatus.unauthenticated;
-        notifyListeners();
-      }
-    });
-    getCurrentUser();
-  }
+  AuthenticationRepository();
 
 // CREATE USER EMAIL AND PASSWORD
-  Future<User?> createUser(
-      {required String email, required String password}) async {
-    try {
-      final user = await _client.auth.signUp(email: email, password: password);
-      _currentUser = user.user;
-    } catch (e) {
-      return null;
-    } finally {
-      notifyListeners();
-    }
-    return null;
-  }
+//   Future<User?> createUser(
+//       {required String email, required String password}) async {
+//     try {
+//       final user = await _client.auth.signUp(email: email, password: password);
+//       _currentUser = user.user;
+//     } catch (e) {
+//       return null;
+//     } finally {
+//       notifyListeners();
+//     }
+//     return null;
+//   }
 
 // CREATE EMAIL SESSION
 //   Future<Session?> createEmailSession(
@@ -68,34 +46,20 @@ class AuthenticationRepository extends ChangeNotifier {
 //   }
 
 //SIGN IN WITH PROVIDER
-  Future<bool> signInWithProvider({required OAuthProvider provider}) async {
+  Future<bool> signInWithProvider() async {
     try {
-      final webClientId = dotenv.env["GOOGLE_CLIENT_ID"];
-      final GoogleSignIn googleSignIn = GoogleSignIn(
-        clientId: webClientId,
-      );
-      final googleUser = await googleSignIn.signIn();
-      final googleAuth = await googleUser!.authentication;
-      final accessToken = googleAuth.accessToken;
-      final idToken = googleAuth.idToken;
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
 
-      if (accessToken == null) {
-        throw 'No Access Token found.';
-      }
+      // Create  user credential
+      final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
 
-      if (idToken == null) {
-        throw 'No ID Token found.';
-      }
-
-      await _client.auth.signInWithIdToken(
-        provider: provider,
-        idToken: idToken,
-        accessToken: accessToken,
-      );
-      await getCurrentUser();
-      _status = AuthStatus.authenticated;
+      // store google credentials to firebase auth
+      await _auth.signInWithCredential(credentials);
       return true;
-    } catch (e) {
+    } on FirebaseAuthException catch (_) {
       return false;
     } finally {
       notifyListeners();
@@ -104,32 +68,16 @@ class AuthenticationRepository extends ChangeNotifier {
 
 // CHECKS FOR REDIRECTS
 // void listenForAuthRedirects() {
-//   supabase
 // }
 
 // GET LOGGED IN USER
-  getCurrentUser() async {
-    try {
-      final user = _client.auth.currentUser;
-      if (user != null) {
-        _status = AuthStatus.authenticated;
-        _currentUser = user;
-      }
-    } catch (_) {
-      _status = AuthStatus.unauthenticated;
-    } finally {
-      notifyListeners();
-    }
-  }
 
-  Future<bool> logout() async {
+  Future<void> logout() async {
     try {
-      await _client.auth.signOut();
-      _currentUser = null;
-      _status = AuthStatus.unauthenticated;
-      return true;
-    } catch (e) {
-      return false;
+      await GoogleSignIn().signOut();
+      await _auth.signOut();
+    } on FirebaseAuthException catch (_) {
+      rethrow;
     } finally {
       notifyListeners();
     }
