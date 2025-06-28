@@ -34,7 +34,7 @@ check it out 😮 and let me know what you think.
 - Flutter 3.4.0
 - Dart 3.4.0
 - Provider 6.1.2
-- flutter supabase
+- firebase
 - flutter dotenv 
 
 ## <a name="features">🔋 Features</a>
@@ -49,7 +49,6 @@ their google accounts
 ## <a name="alternate-version"> 🔄 Alternate Version </a>
 
 -  By changing the branch of this repo to 'feature/fetchData' , you can see this app with full backend implementation with supabase. That means it has
-  - 👉 **Authentication**
   - 👉 **Data fetching from Database**
   
 
@@ -99,7 +98,5 @@ flutter run
 
 ## <a name="more"> 🚀 More </a>
 
-- For supabase to work you need an account and create .env with values
-  - SUPABASE_URL=[YOUR_URL]
-  - SUPABASE_ANON_KEY=[YOUR_ANON_KEY]
+- For firebase to work you need an account and create .env with values
 
