@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -40,52 +41,53 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDLXe7N5Jmexd-McZ8h30P9SAK86jyDZng',
-    appId: '1:949515007744:web:02a4a769218280daa525e5',
-    messagingSenderId: '949515007744',
-    projectId: 'flutter-real-state-app',
-    authDomain: 'flutter-real-state-app.firebaseapp.com',
-    storageBucket: 'flutter-real-state-app.firebasestorage.app',
-    measurementId: 'G-7G4XYE7HMB',
+  static FirebaseOptions web = FirebaseOptions(
+    apiKey: dotenv.env["WEB_API_KEY"] ?? "",
+    appId: dotenv.env["WEB_APP_ID"] ?? "",
+    messagingSenderId: dotenv.env["WEB_MESSAGING_SENDER_ID"] ?? "",
+    projectId: dotenv.env["WEB_PROJECT_ID"] ?? "",
+    authDomain: dotenv.env["WEB_AUTH_DOMAIN"] ?? "",
+    storageBucket: dotenv.env["WEB_STORAGE_BUCKET"] ?? "",
+    measurementId: dotenv.env["WEB_MEASUREMENT_ID"] ?? "",
   );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDUBy7LnjYx4gvWpbzfxA6HP5Cx804npd4',
-    appId: '1:949515007744:android:073bbccdae4ea946a525e5',
-    messagingSenderId: '949515007744',
-    projectId: 'flutter-real-state-app',
-    storageBucket: 'flutter-real-state-app.firebasestorage.app',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.env["ANDROID_API_KEY"] ?? "",
+    appId: dotenv.env["ANDROID_APP_ID"] ?? "",
+    messagingSenderId: dotenv.env["ANDROID_MESSAGING_SENDER_ID"] ?? "",
+    projectId: dotenv.env["ANDROID_PROJECT_ID"] ?? "",
+    storageBucket: dotenv.env["ANDROID_STORAGE_BUCKET"] ?? "",
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAJPPCmivx73NVnVu-jSgBJH4s1LxDb7pY',
-    appId: '1:949515007744:ios:6a342dbcfaabf81da525e5',
-    messagingSenderId: '949515007744',
-    projectId: 'flutter-real-state-app',
-    storageBucket: 'flutter-real-state-app.firebasestorage.app',
-    iosClientId: '949515007744-suh1ia20jvm5n6pj5igjqkr62f00h6r2.apps.googleusercontent.com',
-    iosBundleId: 'com.example.realStateApp',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: dotenv.env["IOS_API_KEY"] ?? "",
+    appId: dotenv.env["IOS_APP_ID"] ?? "",
+    messagingSenderId: dotenv.env["IOS_MESSAGING_SENDER_ID"] ?? "",
+    projectId: dotenv.env["IOS_PROJECT_ID"] ?? "",
+    storageBucket: dotenv.env["IOS_STORAGE_BUCKET"] ?? "",
+    androidClientId: dotenv.env["IOS_ANDROID_CLIENT_ID"] ?? "",
+    iosClientId: dotenv.env["IOS_CLIENT_ID"] ?? "",
+    iosBundleId: dotenv.env["IOS_BUNDLE_ID"] ?? "",
   );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAJPPCmivx73NVnVu-jSgBJH4s1LxDb7pY',
-    appId: '1:949515007744:ios:6a342dbcfaabf81da525e5',
-    messagingSenderId: '949515007744',
-    projectId: 'flutter-real-state-app',
-    storageBucket: 'flutter-real-state-app.firebasestorage.app',
-    iosClientId: '949515007744-suh1ia20jvm5n6pj5igjqkr62f00h6r2.apps.googleusercontent.com',
-    iosBundleId: 'com.example.realStateApp',
+  static FirebaseOptions macos = FirebaseOptions(
+    apiKey: dotenv.env["MAC_BUNDLE_ID"] ?? "",
+    appId: dotenv.env["MAC_APP_ID"] ?? "",
+    messagingSenderId: dotenv.env["MAC_MESSAGING_SENDER_ID"] ?? "",
+    projectId: dotenv.env["MAC_PROJECT_ID"] ?? "",
+    storageBucket: dotenv.env["MAC_STORAGE_BUCKET"] ?? "",
+    androidClientId: dotenv.env["MAC_ANDROID_CLIENT_ID"] ?? "",
+    iosClientId: dotenv.env["MAC_IOS_CLIENT_ID"] ?? "",
+    iosBundleId: dotenv.env["MAC_IOS_BUNDLE_ID"] ?? "",
   );
 
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDLXe7N5Jmexd-McZ8h30P9SAK86jyDZng',
-    appId: '1:949515007744:web:1df632f1e6ef98a2a525e5',
-    messagingSenderId: '949515007744',
-    projectId: 'flutter-real-state-app',
-    authDomain: 'flutter-real-state-app.firebaseapp.com',
-    storageBucket: 'flutter-real-state-app.firebasestorage.app',
-    measurementId: 'G-GH1DTEFPHC',
+  static FirebaseOptions windows = FirebaseOptions(
+    apiKey: dotenv.env["WINDOW_API_KEY"] ?? "",
+    appId: dotenv.env["WINDOW_APP_ID"] ?? "",
+    messagingSenderId: dotenv.env["WINDOW_MESSAGING_SENDER_ID"] ?? "",
+    projectId: dotenv.env["WINDOW_PROJECT_ID"] ?? "",
+    authDomain: dotenv.env["WINDOW_AUTH_DOMAIN"] ?? "",
+    storageBucket: dotenv.env["WINDOW_STORAGE_BUCKET"] ?? "",
+    measurementId: dotenv.env["WINDOW_MEASUREMENT_ID"] ?? "",
   );
-
 }

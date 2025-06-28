@@ -58,7 +58,7 @@ class MTextIconButton extends StatelessWidget {
           } catch (e) {
             if (context.mounted) {
               MScreenNotifier.showSnackBar(context,
-                  "Problem occured while signing you in, please try again $e",
+                  "Problem occurred while signing you in, please try again $e",
                   backgroundColor: Colors.redAccent);
             }
           } finally {
