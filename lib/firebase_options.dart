@@ -3,7 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -42,52 +42,87 @@ class DefaultFirebaseOptions {
   }
 
   static FirebaseOptions web = FirebaseOptions(
-    apiKey: dotenv.env["WEB_API_KEY"] ?? "",
-    appId: dotenv.env["WEB_APP_ID"] ?? "",
-    messagingSenderId: dotenv.env["WEB_MESSAGING_SENDER_ID"] ?? "",
-    projectId: dotenv.env["WEB_PROJECT_ID"] ?? "",
-    authDomain: dotenv.env["WEB_AUTH_DOMAIN"] ?? "",
-    storageBucket: dotenv.env["WEB_STORAGE_BUCKET"] ?? "",
-    measurementId: dotenv.env["WEB_MEASUREMENT_ID"] ?? "",
+    // apiKey: dotenv.env["WEB_API_KEY"] ?? "",
+    apiKey: String.fromEnvironment("WEB_API_KEY"),
+    // appId: dotenv.env["WEB_APP_ID"] ?? "",
+    appId: String.fromEnvironment("WEB_APP_ID"),
+    // messagingSenderId: dotenv.env["WEB_MESSAGING_SENDER_ID"] ?? "",
+    messagingSenderId: String.fromEnvironment("WEB_MESSAGING_SENDER_ID"),
+    // projectId: dotenv.env["WEB_PROJECT_ID"] ?? "",
+    projectId: String.fromEnvironment("WEB_PROJECT_ID"),
+    // authDomain: dotenv.env["WEB_AUTH_DOMAIN"] ?? "",
+    authDomain: String.fromEnvironment("WEB_AUTH_DOMAIN"),
+    // storageBucket: dotenv.env["WEB_STORAGE_BUCKET"] ?? "",
+    storageBucket: String.fromEnvironment("WEB_STORAGE_BUCKET"),
+    // measurementId: dotenv.env["WEB_MEASUREMENT_ID"] ?? "",
+    measurementId: String.fromEnvironment("WEB_MEASUREMENT_ID"),
   );
 
   static FirebaseOptions android = FirebaseOptions(
-    apiKey: dotenv.env["ANDROID_API_KEY"] ?? "",
-    appId: dotenv.env["ANDROID_APP_ID"] ?? "",
-    messagingSenderId: dotenv.env["ANDROID_MESSAGING_SENDER_ID"] ?? "",
-    projectId: dotenv.env["ANDROID_PROJECT_ID"] ?? "",
-    storageBucket: dotenv.env["ANDROID_STORAGE_BUCKET"] ?? "",
+    // apiKey: dotenv.env["ANDROID_API_KEY"] ?? "",
+    apiKey: String.fromEnvironment("ANDROID_API_KEY"),
+    // appId: dotenv.env["ANDROID_APP_ID"] ?? "",
+    appId: String.fromEnvironment("ANDROID_APP_ID"),
+    // messagingSenderId: dotenv.env["ANDROID_MESSAGING_SENDER_ID"] ?? "",
+    messagingSenderId: String.fromEnvironment("ANDROID_MESSAGING_SENDER_ID"),
+    // projectId: dotenv.env["ANDROID_PROJECT_ID"] ?? "",
+    projectId: String.fromEnvironment("ANDROID_PROJECT_ID"),
+    // storageBucket: dotenv.env["ANDROID_STORAGE_BUCKET"] ?? "",
+    storageBucket: String.fromEnvironment("ANDROID_STORAGE_BUCKET"),
   );
 
   static FirebaseOptions ios = FirebaseOptions(
-    apiKey: dotenv.env["IOS_API_KEY"] ?? "",
-    appId: dotenv.env["IOS_APP_ID"] ?? "",
-    messagingSenderId: dotenv.env["IOS_MESSAGING_SENDER_ID"] ?? "",
-    projectId: dotenv.env["IOS_PROJECT_ID"] ?? "",
-    storageBucket: dotenv.env["IOS_STORAGE_BUCKET"] ?? "",
-    androidClientId: dotenv.env["IOS_ANDROID_CLIENT_ID"] ?? "",
-    iosClientId: dotenv.env["IOS_CLIENT_ID"] ?? "",
-    iosBundleId: dotenv.env["IOS_BUNDLE_ID"] ?? "",
+    // apiKey: dotenv.env["IOS_API_KEY"] ?? "",
+    apiKey: String.fromEnvironment("IOS_API_KEY"),
+    // appId: dotenv.env["IOS_APP_ID"] ?? "",
+    appId: String.fromEnvironment("IOS_APP_ID"),
+    // messagingSenderId: dotenv.env["IOS_MESSAGING_SENDER_ID"] ?? "",
+    messagingSenderId: String.fromEnvironment("IOS_MESSAGING_SENDER_ID"),
+    // projectId: dotenv.env["IOS_PROJECT_ID"] ?? "",
+    projectId: String.fromEnvironment("IOS_PROJECT_ID"),
+    // storageBucket: dotenv.env["IOS_STORAGE_BUCKET"] ?? "",
+    storageBucket: String.fromEnvironment("IOS_STORAGE_BUCKET"),
+    // androidClientId: dotenv.env["IOS_ANDROID_CLIENT_ID"] ?? "",
+    androidClientId: String.fromEnvironment("IOS_ANDROID_CLIENT_ID"),
+    // iosClientId: dotenv.env["IOS_CLIENT_ID"] ?? "",
+    iosClientId: String.fromEnvironment("IOS_CLIENT_ID"),
+    // iosBundleId: dotenv.env["IOS_BUNDLE_ID"] ?? "",
+    iosBundleId: String.fromEnvironment("IOS_BUNDLE_ID"),
   );
 
   static FirebaseOptions macos = FirebaseOptions(
-    apiKey: dotenv.env["MAC_BUNDLE_ID"] ?? "",
-    appId: dotenv.env["MAC_APP_ID"] ?? "",
-    messagingSenderId: dotenv.env["MAC_MESSAGING_SENDER_ID"] ?? "",
-    projectId: dotenv.env["MAC_PROJECT_ID"] ?? "",
-    storageBucket: dotenv.env["MAC_STORAGE_BUCKET"] ?? "",
-    androidClientId: dotenv.env["MAC_ANDROID_CLIENT_ID"] ?? "",
-    iosClientId: dotenv.env["MAC_IOS_CLIENT_ID"] ?? "",
-    iosBundleId: dotenv.env["MAC_IOS_BUNDLE_ID"] ?? "",
+    // apiKey: dotenv.env["MAC_BUNDLE_ID"] ?? "",
+    apiKey: String.fromEnvironment("MAC_BUNDLE_ID"),
+    // appId: dotenv.env["MAC_APP_ID"] ?? "",
+    appId: String.fromEnvironment("MAC_APP_ID"),
+    // messagingSenderId: dotenv.env["MAC_MESSAGING_SENDER_ID"] ?? "",
+    messagingSenderId: String.fromEnvironment("MAC_MESSAGING_SENDER_ID"),
+    // projectId: dotenv.env["MAC_PROJECT_ID"] ?? "",
+    projectId: String.fromEnvironment("MAC_PROJECT_ID"),
+    // storageBucket: dotenv.env["MAC_STORAGE_BUCKET"] ?? "",
+    storageBucket: String.fromEnvironment("MAC_STORAGE_BUCKET"),
+    // androidClientId: dotenv.env["MAC_ANDROID_CLIENT_ID"] ?? "",
+    androidClientId: String.fromEnvironment("MAC_ANDROID_CLIENT_ID"),
+    // iosClientId: dotenv.env["MAC_IOS_CLIENT_ID"] ?? "",
+    iosClientId: String.fromEnvironment("MAC_IOS_CLIENT_ID"),
+    // iosBundleId: dotenv.env["MAC_IOS_BUNDLE_ID"] ?? "",
+    iosBundleId: String.fromEnvironment("MAC_IOS_BUNDLE_ID"),
   );
 
   static FirebaseOptions windows = FirebaseOptions(
-    apiKey: dotenv.env["WINDOW_API_KEY"] ?? "",
-    appId: dotenv.env["WINDOW_APP_ID"] ?? "",
-    messagingSenderId: dotenv.env["WINDOW_MESSAGING_SENDER_ID"] ?? "",
-    projectId: dotenv.env["WINDOW_PROJECT_ID"] ?? "",
-    authDomain: dotenv.env["WINDOW_AUTH_DOMAIN"] ?? "",
-    storageBucket: dotenv.env["WINDOW_STORAGE_BUCKET"] ?? "",
-    measurementId: dotenv.env["WINDOW_MEASUREMENT_ID"] ?? "",
+    // apiKey: dotenv.env["WINDOW_API_KEY"] ?? "",
+    apiKey: String.fromEnvironment("WINDOW_API_KEY"),
+    // appId: dotenv.env["WINDOW_APP_ID"] ?? "",
+    appId: String.fromEnvironment("WINDOW_APP_ID"),
+    // messagingSenderId: dotenv.env["WINDOW_MESSAGING_SENDER_ID"] ?? "",
+    messagingSenderId: String.fromEnvironment("WINDOW_MESSAGING_SENDER_ID"),
+    // projectId: dotenv.env["WINDOW_PROJECT_ID"] ?? "",
+    projectId: String.fromEnvironment("WINDOW_PROJECT_ID"),
+    // authDomain: dotenv.env["WINDOW_AUTH_DOMAIN"] ?? "",
+    authDomain: String.fromEnvironment("WINDOW_AUTH_DOMAIN"),
+    // storageBucket: dotenv.env["WINDOW_STORAGE_BUCKET"] ?? "",
+    storageBucket: String.fromEnvironment("WINDOW_STORAGE_BUCKET"),
+    // measurementId: dotenv.env["WINDOW_MEASUREMENT_ID"] ?? "",
+    measurementId: String.fromEnvironment("WINDOW_MEASUREMENT_ID"),
   );
 }
