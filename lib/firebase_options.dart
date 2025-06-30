@@ -41,7 +41,7 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static FirebaseOptions web = FirebaseOptions(
+  static const FirebaseOptions web = FirebaseOptions(
     // apiKey: dotenv.env["WEB_API_KEY"] ?? "",
     apiKey: String.fromEnvironment("WEB_API_KEY"),
     // appId: dotenv.env["WEB_APP_ID"] ?? "",
@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
     measurementId: String.fromEnvironment("WEB_MEASUREMENT_ID"),
   );
 
-  static FirebaseOptions android = FirebaseOptions(
+  static const FirebaseOptions android = FirebaseOptions(
     // apiKey: dotenv.env["ANDROID_API_KEY"] ?? "",
     apiKey: String.fromEnvironment("ANDROID_API_KEY"),
     // appId: dotenv.env["ANDROID_APP_ID"] ?? "",
@@ -71,7 +71,7 @@ class DefaultFirebaseOptions {
     storageBucket: String.fromEnvironment("ANDROID_STORAGE_BUCKET"),
   );
 
-  static FirebaseOptions ios = FirebaseOptions(
+  static const  FirebaseOptions ios = FirebaseOptions(
     // apiKey: dotenv.env["IOS_API_KEY"] ?? "",
     apiKey: String.fromEnvironment("IOS_API_KEY"),
     // appId: dotenv.env["IOS_APP_ID"] ?? "",
@@ -90,7 +90,7 @@ class DefaultFirebaseOptions {
     iosBundleId: String.fromEnvironment("IOS_BUNDLE_ID"),
   );
 
-  static FirebaseOptions macos = FirebaseOptions(
+  static const FirebaseOptions macos = FirebaseOptions(
     // apiKey: dotenv.env["MAC_BUNDLE_ID"] ?? "",
     apiKey: String.fromEnvironment("MAC_BUNDLE_ID"),
     // appId: dotenv.env["MAC_APP_ID"] ?? "",
@@ -109,7 +109,7 @@ class DefaultFirebaseOptions {
     iosBundleId: String.fromEnvironment("MAC_IOS_BUNDLE_ID"),
   );
 
-  static FirebaseOptions windows = FirebaseOptions(
+  static const FirebaseOptions windows = FirebaseOptions(
     // apiKey: dotenv.env["WINDOW_API_KEY"] ?? "",
     apiKey: String.fromEnvironment("WINDOW_API_KEY"),
     // appId: dotenv.env["WINDOW_APP_ID"] ?? "",
