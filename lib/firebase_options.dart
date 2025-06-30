@@ -71,7 +71,7 @@ class DefaultFirebaseOptions {
     storageBucket: String.fromEnvironment("ANDROID_STORAGE_BUCKET"),
   );
 
-  static const  FirebaseOptions ios = FirebaseOptions(
+  static const FirebaseOptions ios = FirebaseOptions(
     // apiKey: dotenv.env["IOS_API_KEY"] ?? "",
     apiKey: String.fromEnvironment("IOS_API_KEY"),
     // appId: dotenv.env["IOS_APP_ID"] ?? "",

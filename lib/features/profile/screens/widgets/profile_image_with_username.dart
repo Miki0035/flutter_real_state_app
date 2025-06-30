@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_restate_app/common/widgets/container/avatar_circular_image_container.dart';
 import 'package:flutter_restate_app/data/repository/authentication/authentication_repository.dart';
@@ -15,36 +16,43 @@ class MAvatarHeading extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Column(
-          children: [
-            Stack(
+        Consumer<AuthenticationRepository>(
+          builder: (_, auth, __) {
+            return Column(
               children: [
-                const MAvatarCircular(image: MImage.avatar),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: const Image(
-                      image: AssetImage(MImage.edit),
-                      width: 30,
-                      height: 30,
-                    ),
-                  ),
-                )
+                Stack(
+                  children: [
+                    auth.user != null && !kIsWeb
+                        ? MAvatarCircular(
+                            image: auth.user!.photoURL!,
+                            isNetworkImage: true,
+                          )
+                        : const MAvatarCircular(image: MImage.avatar),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: const Image(
+                          image: AssetImage(MImage.edit),
+                          width: 30,
+                          height: 30,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: MSize.spaceBtwItems,
+                ),
+                Text(
+                  auth.user?.displayName ?? "No name",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
+                ),
               ],
-            ),
-            const SizedBox(
-              height: MSize.spaceBtwItems,
-            ),
-            Consumer<AuthenticationRepository>(
-              builder: (_, auth, __) => Text(
-                auth.user?.displayName ?? "No name",
-                style: const TextStyle(
-                    fontWeight: FontWeight.w600, fontSize: MSize.fontSizeLg),
-              ),
-            )
-          ],
+            );
+          },
         ),
       ],
     );

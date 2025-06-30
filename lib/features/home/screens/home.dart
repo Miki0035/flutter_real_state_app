@@ -33,58 +33,63 @@ class MHomeScreen extends StatelessWidget {
         backgroundColor: MColor.veryLightBlack.withValues(alpha: 0.1),
         body: CustomScrollView(
           slivers: [
-            MSliverAppBar(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    MImage.avatar,
-                    width: 55,
-                    height: 55,
-                    fit: BoxFit.fill,
-                  ),
-                  SizedBox(
-                    width: 150,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Good Morning",
-                          style: TextStyle(
-                              color: MColor.veryLightBlack,
-                              fontSize: MSize.fontSizeSm,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Consumer<AuthenticationRepository>(
-                            builder: (_, auth, __) {
-                          if (auth.user == null) {
-                            return FadeShimmer(
-                                width: double.infinity,
-                                height: double.infinity);
-                          }
-
-                          return Text(
+            Consumer<AuthenticationRepository>(builder: (_, auth, __) {
+              return MSliverAppBar(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    auth.user != null && !kIsWeb
+                        ? Image.network(
+                            auth.user!.photoURL!,
+                            width: 55,
+                            height: 55,
+                            fit: BoxFit.fill,
+                          )
+                        : Image.asset(
+                            MImage.avatar,
+                            width: 55,
+                            height: 55,
+                            fit: BoxFit.fill,
+                          ),
+                    SizedBox(
+                      width: 150,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "Good Morning",
+                            style: TextStyle(
+                                color: MColor.veryLightBlack,
+                                fontSize: MSize.fontSizeSm,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          auth.user == null
+                              ? FadeShimmer(
+                                  width: double.infinity,
+                                  height: double.infinity)
+                              : const SizedBox.shrink(),
+                          Text(
                             auth.user?.displayName ?? 'No name',
                             style: const TextStyle(
                                 color: MColor.black,
                                 fontWeight: FontWeight.w500,
                                 fontSize: MSize.fontSizeMd),
-                          );
-                        }),
-                      ],
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                actions: const [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                    child: MAppBarIconNotification(
+                      icon: MImage.bell,
                     ),
                   )
                 ],
-              ),
-              actions: const [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: MAppBarIconNotification(
-                    icon: MImage.bell,
-                  ),
-                )
-              ],
-            ),
+              );
+            }),
             SliverPadding(
               padding: const EdgeInsets.all(MSize.defaultSpace),
               sliver: SliverToBoxAdapter(

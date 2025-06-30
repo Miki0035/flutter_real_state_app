@@ -49,21 +49,16 @@ class AuthenticationRepository extends ChangeNotifier {
 //SIGN IN WITH PROVIDER
   Future<bool> signInWithProvider() async {
     try {
-      print('Sign in started');
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
       if (userAccount == null) {
         // User canceled the sign-in flow
-        print("User cancelled the sign-in process.");
         return false;
       }
-      print("Account selected: ${userAccount.email}");
 
       final GoogleSignInAuthentication googleAuth =
           await userAccount.authentication;
 
-      print("Access token: ${googleAuth.accessToken}");
-      print("ID token: ${googleAuth.idToken}");
 
       // Create  user credential
       final credentials = GoogleAuthProvider.credential(
@@ -71,16 +66,12 @@ class AuthenticationRepository extends ChangeNotifier {
 
       // store google credentials to firebase auth
       final result = await _auth.signInWithCredential(credentials);
-      print("Firebase sign-in successful. UID: ${result.user?.uid}");
       return true;
     } on FirebaseAuthException catch (e) {
-      print("FirebaseAuthException: ${e.message}");
       return false;
     } on PlatformException catch (e) {
-      print("PlatformException: ${e.code} - ${e.message}");
       return false;
     } catch (e) {
-      print("Unknown exception: $e");
       return false;
     } finally {
       notifyListeners();

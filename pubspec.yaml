@@ -17,6 +17,7 @@ dependencies:
   logger: ^2.5.0
   fade_shimmer: ^2.4.0
   latlng: ^2.0.7
+  cached_network_image: ^3.4.1
 
   # STATE MANAGEMENT
   provider: ^6.1.2
