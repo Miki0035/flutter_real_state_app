@@ -52,7 +52,7 @@ their google accounts
 -  By changing the branch of this repo to 'feature/fetchData' , you can see this app with full backend implementation with supabase. That means it has
   - 👉 **Data fetching from Database**
 
-## <a name="tech-stack">🌐 WebSite URL </a>
+## <a name="web">🌐 WebSite URL </a>
 
 - 🔗 [ReState](https://myrestateapp.netlify.app/)
 
