@@ -19,10 +19,11 @@ class MobileViewWrapper extends StatelessWidget {
         return Container(
           color: Colors.grey[300], // background for outside the "device"
           alignment: Alignment.topCenter,
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 50),
           child: Container(
             width: isWeb ? maxWidth : constraints.maxWidth,
-            height: constraints.maxHeight * 0.85,
+
+            height: constraints.maxHeight * 0.95,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(30), // rounded corners

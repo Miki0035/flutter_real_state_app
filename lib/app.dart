@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_restate_app/common/widgets/layouts/mobile_view_wrapper.dart';
+import 'package:flutter_restate_app/utilis/classes/custom_scroll_behavior.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_restate_app/data/repository/authentication/authentication_repository.dart';
 import 'package:flutter_restate_app/features/login/screens/login.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     if (isMobile) {
       return Consumer<AuthenticationRepository>(
           builder: (_, auth, __) => MaterialApp(
+              scrollBehavior: MyCustomScrollBehaviour(),
               debugShowCheckedModeBanner: false,
               theme: MAppTheme.lightTheme,
               home: auth.user != null
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
       return Consumer<AuthenticationRepository>(
           builder: (_, auth, __) => MobileViewWrapper(
                 child: MaterialApp(
+                    scrollBehavior: MyCustomScrollBehaviour(),
                     debugShowCheckedModeBanner: false,
                     theme: MAppTheme.lightTheme,
                     home: auth.user != null

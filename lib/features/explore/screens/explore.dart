@@ -31,31 +31,33 @@ class MExploreScreen extends StatelessWidget {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        backgroundColor: MColor.veryLightBlack.withValues(alpha: 0.1),
         body: CustomScrollView(
           slivers: [
-            MSliverAppBar(
-              leading: MBackButton(onPressed: () {
-                Provider.of<NavigationProvider>(context, listen: false)
-                    .navigateTo(0);
-              }),
-              title: const Text(
-                'Search Your Ideal Home',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: MSize.fontSizeLg,
-                ),
-              ),
-              centerTitle: true,
-              actions: const [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.0),
-                  child: MAppBarIconNotification(
-                    icon: MImage.bell,
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(vertical: MSize.defaultSpace),
+              sliver: MSliverAppBar(
+                leading: MBackButton(onPressed: () {
+                  Provider.of<NavigationProvider>(context, listen: false)
+                      .navigateTo(0);
+                }),
+                title: const Text(
+                  'Search Your Ideal Home',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: MSize.fontSizeLg,
                   ),
-                )
-              ],
+                ),
+                centerTitle: true,
+                actions: const [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                    child: MAppBarIconNotification(
+                      icon: MImage.bell,
+                    ),
+                  )
+                ],
+              ),
             ),
             SliverPadding(
               padding: const EdgeInsets.all(MSize.defaultSpace),

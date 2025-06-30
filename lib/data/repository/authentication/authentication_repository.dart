@@ -65,11 +65,11 @@ class AuthenticationRepository extends ChangeNotifier {
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
       // store google credentials to firebase auth
-      final result = await _auth.signInWithCredential(credentials);
+      await _auth.signInWithCredential(credentials);
       return true;
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       return false;
-    } on PlatformException catch (e) {
+    } on PlatformException catch (_) {
       return false;
     } catch (e) {
       return false;

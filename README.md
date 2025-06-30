@@ -35,7 +35,7 @@ check it out 😮 and let me know what you think.
 - Dart 3.4.0
 - Provider 6.1.2
 - firebase
-- flutter dotenv 
+- flutter dotenv (for development)
 
 ## <a name="features">🔋 Features</a>
 
