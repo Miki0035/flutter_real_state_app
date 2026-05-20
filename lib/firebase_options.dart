@@ -59,35 +59,22 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    // apiKey: dotenv.env["ANDROID_API_KEY"] ?? "",
-    apiKey: String.fromEnvironment("ANDROID_API_KEY"),
-    // appId: dotenv.env["ANDROID_APP_ID"] ?? "",
-    appId: String.fromEnvironment("ANDROID_APP_ID"),
-    // messagingSenderId: dotenv.env["ANDROID_MESSAGING_SENDER_ID"] ?? "",
-    messagingSenderId: String.fromEnvironment("ANDROID_MESSAGING_SENDER_ID"),
-    // projectId: dotenv.env["ANDROID_PROJECT_ID"] ?? "",
-    projectId: String.fromEnvironment("ANDROID_PROJECT_ID"),
-    // storageBucket: dotenv.env["ANDROID_STORAGE_BUCKET"] ?? "",
-    storageBucket: String.fromEnvironment("ANDROID_STORAGE_BUCKET"),
+    apiKey: 'AIzaSyDUBy7LnjYx4gvWpbzfxA6HP5Cx804npd4',
+    appId: '1:949515007744:android:073bbccdae4ea946a525e5',
+    messagingSenderId: '949515007744',
+    projectId: 'flutter-real-state-app',
+    storageBucket: 'flutter-real-state-app.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    // apiKey: dotenv.env["IOS_API_KEY"] ?? "",
-    apiKey: String.fromEnvironment("IOS_API_KEY"),
-    // appId: dotenv.env["IOS_APP_ID"] ?? "",
-    appId: String.fromEnvironment("IOS_APP_ID"),
-    // messagingSenderId: dotenv.env["IOS_MESSAGING_SENDER_ID"] ?? "",
-    messagingSenderId: String.fromEnvironment("IOS_MESSAGING_SENDER_ID"),
-    // projectId: dotenv.env["IOS_PROJECT_ID"] ?? "",
-    projectId: String.fromEnvironment("IOS_PROJECT_ID"),
-    // storageBucket: dotenv.env["IOS_STORAGE_BUCKET"] ?? "",
-    storageBucket: String.fromEnvironment("IOS_STORAGE_BUCKET"),
-    // androidClientId: dotenv.env["IOS_ANDROID_CLIENT_ID"] ?? "",
-    androidClientId: String.fromEnvironment("IOS_ANDROID_CLIENT_ID"),
-    // iosClientId: dotenv.env["IOS_CLIENT_ID"] ?? "",
-    iosClientId: String.fromEnvironment("IOS_CLIENT_ID"),
-    // iosBundleId: dotenv.env["IOS_BUNDLE_ID"] ?? "",
-    iosBundleId: String.fromEnvironment("IOS_BUNDLE_ID"),
+    apiKey: 'AIzaSyAJPPCmivx73NVnVu-jSgBJH4s1LxDb7pY',
+    appId: '1:949515007744:ios:6a342dbcfaabf81da525e5',
+    messagingSenderId: '949515007744',
+    projectId: 'flutter-real-state-app',
+    storageBucket: 'flutter-real-state-app.firebasestorage.app',
+    androidClientId: '949515007744-nbt8rsd4m31ngo9e6gfiqo35bh6pluq3.apps.googleusercontent.com',
+    iosClientId: '949515007744-suh1ia20jvm5n6pj5igjqkr62f00h6r2.apps.googleusercontent.com',
+    iosBundleId: 'com.example.realStateApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
