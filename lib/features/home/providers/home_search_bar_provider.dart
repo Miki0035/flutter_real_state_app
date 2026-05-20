@@ -50,7 +50,6 @@ class HomeSearchBarProvider extends BaseSearchBarProvider {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _debounce?.cancel();
     query.dispose();
     super.dispose();

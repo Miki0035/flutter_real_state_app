@@ -29,6 +29,5 @@ class MAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(MDeviceUtility.getAppBarHeight());
 }
